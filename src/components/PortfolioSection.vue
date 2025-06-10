@@ -50,7 +50,7 @@
 
 <script setup>
 import { ref, computed, watch } from 'vue';
-import ddddd from '../assets/ddddd.jpg';
+import foto1 from '../assets/foto1.jpg';
 import foto2 from '../assets/foto2.jpg';
 import foto3 from '../assets/foto3.jpg';
 import foto4 from '../assets/foto4.jpg';
@@ -81,7 +81,7 @@ const categories = {
 
 const portfolioItems = ref([
     // Fotografías
-   { id: 'fa1', type: 'image', mediaType: 'fotografias', category: 'fotos_arias', src: ddddd, alt: 'Cámara vintage y lentes' },
+   { id: 'fa1', type: 'image', mediaType: 'fotografias', category: 'fotos_arias', src: foto1, alt: 'Cámara vintage y lentes' },
     { id: 'fa2', type: 'image', mediaType: 'fotografias', category: 'fotos_arias', src: foto2, alt: 'Fotógrafo tomando una foto' },
     { id: 'fa3', type: 'image', mediaType: 'fotografias', category: 'fotos_arias', src: foto3, alt: 'Cámara DSLR y equipo' },
 

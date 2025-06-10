@@ -11,7 +11,9 @@
 
     <div class="content-overlay">
       <h1 class="main-title">Capturando Momentos, Creando Arte</h1>
-      <p class="subtitle">Fotografía y videografía profesional para transformar tus ideas en realidad visual</p>
+      <p class="subtitle">
+        Fotografía y videografía profesional para transformar tus ideas en realidad visual
+      </p>
       <div class="button-container">
         <button class="btn primary">Ver Portafolio</button>
         <button class="btn secondary">Contactar</button>
@@ -47,27 +49,54 @@ export default {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   grid-template-rows: repeat(2, 1fr);
-  gap: 0px;
+  gap: 0;
+  z-index: 1;
 }
 
 .grid-item {
-  background-color: rgba(0, 0, 0, 0.4);
-  border: 1px solid rgba(255, 255, 255, 0.05);
-  box-sizing: border-box;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  filter: brightness(0.6);
 }
 
-.grid-item-1 { grid-column: 1; grid-row: 1; }
-.grid-item-2 { grid-column: 2 / span 2; grid-row: 1; }
-.grid-item-3 { grid-column: 3; grid-row: 1; }
-.grid-item-4 { grid-column: 1; grid-row: 2; }
-.grid-item-5 { grid-column: 2; grid-row: 2; }
-.grid-item-6 { grid-column: 3; grid-row: 2; }
+/* Imágenes personalizadas por sección */
+.grid-item-1 {
+  grid-column: 1;
+  grid-row: 1;
+  background-image: url('../assets/foto1.jpg');
+}
+.grid-item-2 {
+  grid-column: 2 / span 2;
+  grid-row: 1;
+  background-image: url('../assets/foto2.jpg');
+}
+.grid-item-3 {
+  grid-column: 3;
+  grid-row: 1;
+  background-image: url('../assets/foto3.jpg');
+}
+.grid-item-4 {
+  grid-column: 1;
+  grid-row: 2;
+  background-image: url('../assets/foto4.jpg');
+}
+.grid-item-5 {
+  grid-column: 2;
+  grid-row: 2;
+  background-image: url('../assets/foto5.jpg');
+}
+.grid-item-6 {
+  grid-column: 3;
+  grid-row: 2;
+  background-image: url('../assets/foto7.jpg');
+}
 
 .content-overlay {
   position: relative;
   text-align: center;
   color: #fff;
-  z-index: 10;
+  z-index: 2;
   padding: 20px;
   max-width: 800px;
   margin: 0 auto;
