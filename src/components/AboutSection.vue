@@ -2,11 +2,7 @@
   <section class="about-section">
     <div class="about-content-wrapper">
       <div class="about-left">
-        <div class="profile-placeholder">
-          <div class="inner-circle large"></div>
-          <div class="inner-circle small-top-left"></div>
-          <div class="inner-circle small-bottom-right"></div>
-        </div>
+        <img src="../assets/foto8.jpg" alt="Sobre mí" class="about-image" />
       </div>
       <div class="about-right">
         <h2 class="section-title">Sobre Mí</h2>
@@ -105,43 +101,13 @@ export default {
   align-items: center;
 }
 
-.profile-placeholder {
-  position: relative;
-  width: 300px;
-  height: 300px;
-  border-radius: 50%;
-  background-color: #1a1a1a;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.inner-circle {
-  position: absolute;
-  background-color: #2b2b2b;
-  border-radius: 50%;
-}
-
-.inner-circle.large {
-  width: 180px;
-  height: 180px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.inner-circle.small-top-left {
-  width: 80px;
-  height: 80px;
-  top: -30px;
-  left: -30px;
-}
-
-.inner-circle.small-bottom-right {
-  width: 80px;
-  height: 80px;
-  bottom: -30px;
-  right: -30px;
+.about-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 16px;
+  max-width: 100%;
+  max-height: 100%;
 }
 
 .about-right {
@@ -197,11 +163,11 @@ export default {
 .icon {
   margin-right: 10px;
   font-size: 1.2em;
-  color: #4CAF50; /* Color para los iconos de check */
+  color: #4CAF50;
 }
 
 .equipment .icon {
-  color: #64B5F6; /* Color diferente para iconos de equipamiento */
+  color: #64B5F6;
 }
 
 @media (max-width: 992px) {
@@ -213,6 +179,11 @@ export default {
 
   .about-left {
     width: 100%;
+  }
+
+  .about-image {
+    max-height: 400px;
+    border-radius: 12px;
   }
 
   .section-title {
@@ -241,26 +212,6 @@ export default {
   .specialties h3,
   .equipment h3 {
     font-size: 1.2em;
-  }
-
-  .profile-placeholder {
-    width: 250px;
-    height: 250px;
-  }
-
-  .inner-circle.large {
-    width: 150px;
-    height: 150px;
-  }
-
-  .inner-circle.small-top-left,
-  .inner-circle.small-bottom-right {
-    width: 60px;
-    height: 60px;
-    top: -20px;
-    left: -20px;
-    bottom: -20px;
-    right: -20px;
   }
 }
 </style>
