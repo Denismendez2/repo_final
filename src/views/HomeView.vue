@@ -2,6 +2,7 @@
   <div>
     <HeroSection />
     <AboutSection />
+    <PortfolioSection />
     <!-- Nueva sección de contenido adicional para hacer la vista más larga -->
     <section class="additional-content">
  
@@ -12,6 +13,7 @@
 <script setup>
 import HeroSection from '../components/HeroSection.vue'
 import AboutSection from '../components/AboutSection.vue'
+import PortfolioSection from '../components/PortfolioSection.vue';
 </script>
 
 <style scoped>
