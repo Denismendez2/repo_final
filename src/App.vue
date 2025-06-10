@@ -19,7 +19,7 @@
 
 <script setup>
 
-import TheappbarVue from "components/TheAppBar.vue";
+
 </script>
 
 <style>
