@@ -1,7 +1,7 @@
 <template>
-  <v-app-bar app color="primary" dark>
+  <v-app-bar app color="#2E2E2E" dark>
     <v-app-bar-nav-icon @click="drawer = !drawer" class="d-sm-none" />
-    <v-toolbar-title>Mi App</v-toolbar-title>
+    <v-toolbar-title> Levi Mendoza </v-toolbar-title>
     <v-spacer />
 
     <!-- Menú en pantallas grandes -->
@@ -11,6 +11,9 @@
       </router-link>
       <router-link to="/about" class="nav-link">
         <v-btn text>Acerca de</v-btn>
+      </router-link>
+      <router-link to="/about" class="nav-link">
+        <v-btn text>Portafolio</v-btn>
       </router-link>
     </div>
   </v-app-bar>
