@@ -4,30 +4,7 @@
     <AboutSection />
     <!-- Nueva sección de contenido adicional para hacer la vista más larga -->
     <section class="additional-content">
-      <h2>Nuestros Servicios</h2>
-      <p>
-        Ofrecemos una amplia gama de servicios fotográficos y de videografía para cubrir
-        todas tus necesidades creativas. Desde eventos corporativos hasta retratos personales,
-        nuestro equipo está listo para capturar la esencia de cada momento.
-      </p>
-      <div class="services-grid">
-        <div class="service-item">
-          <h3>Fotografía de Bodas</h3>
-          <p>Capturamos cada emoción y detalle de tu día especial con un estilo único y atemporal.</p>
-        </div>
-        <div class="service-item">
-          <h3>Videos Promocionales</h3>
-          <p>Creamos contenido de video dinámico y atractivo para potenciar la presencia de tu marca.</p>
-        </div>
-        <div class="service-item">
-          <h3>Sesiones Familiares</h3>
-          <p>Momentos preciosos e inolvidables de tu familia, capturados con calidez y naturalidad.</p>
-        </div>
-        <div class="service-item">
-          <h3>Fotografía de Producto</h3>
-          <p>Imágenes nítidas y profesionales que realzan la calidad y atractivo de tus productos.</p>
-        </div>
-      </div>
+ 
     </section>
   </div>
 </template>
