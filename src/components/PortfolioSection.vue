@@ -53,6 +53,10 @@ import { ref, computed, watch } from 'vue';
 import ddddd from '../assets/ddddd.jpg';
 import foto2 from '../assets/foto2.jpg';
 import foto3 from '../assets/foto3.jpg';
+import foto4 from '../assets/foto4.jpg';
+import foto5 from '../assets/foto5.jpg';
+import foto7 from '../assets/foto7.jpg';    
+import foto8 from '../assets/foto8.jpg';
 
 const selectedMediaType = ref('fotografias');
 const selectedCategory = ref(null);
@@ -81,11 +85,11 @@ const portfolioItems = ref([
     { id: 'fa2', type: 'image', mediaType: 'fotografias', category: 'fotos_arias', src: foto2, alt: 'Fotógrafo tomando una foto' },
     { id: 'fa3', type: 'image', mediaType: 'fotografias', category: 'fotos_arias', src: foto3, alt: 'Cámara DSLR y equipo' },
 
-    { id: 'sg1', type: 'image', mediaType: 'fotografias', category: 'sesiones_generales', src: 'https://images.unsplash.com/photo-1523985799976-b6b6b7d1e1f7?auto=format&fit=crop&q=80&w=600&h=400', alt: 'Sesión General 1 - persona con cámara' },
-    { id: 'sg2', type: 'image', mediaType: 'fotografias', category: 'sesiones_generales', src: 'https://images.unsplash.com/photo-1503923345719-7557088b64e5?auto=format&fit=crop&q=80&w=600&h=400', alt: 'Sesión General 2 - fotografía de calle' },
+    { id: 'sg1', type: 'image', mediaType: 'fotografias', category: 'sesiones_generales', src: foto4, alt: 'Sesión General 1 - persona con cámara' },
+    { id: 'sg2', type: 'image', mediaType: 'fotografias', category: 'sesiones_generales', src: foto5, alt: 'Sesión General 2 - fotografía de calle' },
 
-    { id: 'c1', type: 'image', mediaType: 'fotografias', category: 'comida', src: '../assets', alt: 'Fotografía de comida 1' },
-    { id: 'c2', type: 'image', mediaType: 'fotografias', category: 'comida', src: 'https://images.unsplash.com/photo-1540189549336-e699fea30084?auto=format&fit=crop&q=80&w=600&h=400', alt: 'Fotografía de comida 2' },
+    { id: 'c1', type: 'image', mediaType: 'fotografias', category: 'comida', src: foto7, alt: 'Fotografía de comida 1' },
+    { id: 'c2', type: 'image', mediaType: 'fotografias', category: 'comida', src: foto8, alt: 'Fotografía de comida 2' },
 
     { id: 'd1', type: 'image', mediaType: 'fotografias', category: 'deportiva', src: 'https://images.unsplash.com/photo-1579953932986-7734891152a4?auto=format&fit=crop&q=80&w=600&h=400', alt: 'Fotografía deportiva 1' },
     { id: 'd2', type: 'image', mediaType: 'fotografias', category: 'deportiva', src: 'https://images.unsplash.com/photo-1628172901614-38c64267606e?auto=format&fit=crop&q=80&w=600&h=400', alt: 'Fotografía deportiva 2' },
