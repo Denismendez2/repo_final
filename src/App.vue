@@ -1,5 +1,6 @@
 <template>
   <v-app>
+    
     <v-app-bar app color="primary" dark>
       <v-toolbar-title>Mi App Vue con Vuetify, Router y Pinia</v-toolbar-title>
       <v-spacer></v-spacer>
@@ -17,7 +18,8 @@
 </template>
 
 <script setup>
-// No necesitas lógica adicional en App.vue por ahora
+
+import TheappbarVue from "components/TheAppBar.vue";
 </script>
 
 <style>
