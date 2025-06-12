@@ -76,9 +76,9 @@ export default {
     return {
       activeCategory: 'Fotografías', // Default active category
       categories: [
-        { name: 'Fotografías', route: '/fotografias', imageUrl: photographyImage, class: 'gradient-orange' },
-        { name: 'Videos', route: '/videos', imageUrl: videoImage, class: 'gradient-pink' },
-        { name: 'Drone', route: '/drone', imageUrl: droneImage, class: 'gradient-orange' }
+        { name: 'Fotografías', route: '/Cfotografias', imageUrl: photographyImage, class: 'gradient-orange' },
+        { name: 'Videos', route: '/Cvideos', imageUrl: videoImage, class: 'gradient-pink' },
+        { name: 'Drone', route: '/Cdrone', imageUrl: droneImage, class: 'gradient-orange' }
       ],
      
     

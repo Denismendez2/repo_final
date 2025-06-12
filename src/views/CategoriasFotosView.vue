@@ -66,7 +66,7 @@ export default {
       photoCategories: [
         {
           name: 'Fotografía de Comida',
-          route: '/fotografias/comida',
+          route: '/ImageCollage',
           imageUrl: placeholderImage1, // Usa tu propia imagen para esta categoría
           class: 'gradient-pink',
         },
@@ -78,7 +78,7 @@ export default {
         },
         {
           name: 'Sesiones Generales',
-          route: '/fotografias/sesiones-generales',
+          route: '/ImageCollage',
           // Aquí utilizamos la imagen directamente desde Google Drive
           imageUrl: 'https://drive.google.com/uc?export=view&id=1aplzGXcUb7r5q6ks4VOcF4L2ulOhBhR8',
           class: 'gradient-blue', // Nuevo gradiente para esta categoría
