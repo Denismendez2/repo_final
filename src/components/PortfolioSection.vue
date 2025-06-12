@@ -1,239 +1,265 @@
 <template>
-    <v-container fluid class="portfolio-container px-0">
-        <v-row justify="center" class="mb-8">
-            <v-col cols="12" class="text-center">
-                <h1 class="text-h4 text-sm-h3 text-md-h2 text-lg-h1 font-weight-bold mb-4">Portfolio</h1>
-                <p class="text-body-1 text-sm-body-1 text-md-h6 text-lg-h5 text-white-50">
-                    Explora mi trabajo a través de diferentes categorías y descubre cómo puedo
-                    ayudarte a crear contenido visual impactante.
-                </p>
-            </v-col>
-        </v-row>
+  <v-container class="portfolio-container" fluid>
+    <v-row justify="center" class="text-center">
+      <v-col cols="12">
+        <h1 class="portfolio-title">Portfolio</h1>
+        <p class="portfolio-description">Explora mi trabajo a través de diferentes categorías y descubre cómo puedo ayudarte a crear contenido visual impactante.</p>
+      </v-col>
+    </v-row>
 
-        <v-row justify="center" class="mb-8">
-            <v-col cols="auto">
-                <v-btn-toggle v-model="selectedMediaType" mandatory group class="media-type-toggle">
-                    <v-btn value="fotografias" class="toggle-btn">Fotografías</v-btn>
-                    <v-btn value="videos" class="toggle-btn">Videos</v-btn>
-                    <v-btn value="drone" class="toggle-btn">Drone</v-btn>
-                </v-btn-toggle>
-            </v-col>
-        </v-row>
+    <v-row justify="center" class="mb-8">
+      <v-col cols="12" sm="auto">
+        <v-btn-toggle
+          v-model="activeCategory"
+          mandatory
+          group
+          dark
+        >
+          <v-btn
+            v-for="cat in categories"
+            :key="cat.name"
+            :value="cat.name"
+            class="category-btn"
+            :class="{ 'active-category-btn': activeCategory === cat.name }"
+            @click="setActiveCategory(cat.name)"
+          >
+            {{ cat.name }}
+          </v-btn>
+        </v-btn-toggle>
+      </v-col>
+    </v-row>
 
-        <v-row justify="center" class="mb-12">
-            <v-col cols="auto">
-                <v-chip-group v-model="selectedCategory" mandatory class="category-chip-group"
-                    active-class="selected-chip">
-                    <v-chip v-for="category in filteredCategories" :key="category.value" :value="category.value" filter
-                        variant="outlined" size="large" class="category-chip" label>
-                        {{ category.text }}
-                    </v-chip>
-                </v-chip-group>
-            </v-col>
-        </v-row>
+    <v-row justify="center">
+      <v-col cols="12" sm="10" md="8" lg="6" xl="4">
+        <router-link :to="currentCategoryRoute" class="router-link-wrapper">
+          <v-card
+            class="portfolio-main-card"
+            :class="currentCategoryClass"
+            :elevation="10"
+            hover
+          >
+            <v-img
+              :src="currentCategoryImageUrl"
+              :alt="activeCategory + ' category image'"
+              class="portfolio-main-image"
+              cover >
+              <v-overlay
+                absolute
+                opacity="0" class="d-flex align-center justify-center"
+              >
+                <div class="main-portfolio-text">Portafolio</div>
+              </v-overlay>
 
-        <v-row justify="center" class="mb-8">
-            <v-col v-for="item in filteredPortfolioItems" :key="item.id" cols="12" sm="6" md="4" lg="3" xl="2"
-                class="d-flex justify-center">
-                <v-card class="portfolio-item-card">
-                    <v-img v-if="item.type === 'image'" :src="item.src" :alt="item.alt" cover
-                        class="portfolio-media"></v-img>
-                    <div v-else-if="item.type === 'video'" class="portfolio-media video-placeholder">
-                        <v-icon size="96" color="white">mdi-play-circle</v-icon>
-                        <span class="video-text">Video Placeholder</span>
-                    </div>
-                </v-card>
-            </v-col>
-        </v-row>
-    </v-container>
+              <v-overlay
+                absolute
+                opacity="0" class="d-flex align-center justify-center hover-overlay"
+              >
+                <span class="view-details-text">Ver Contenido</span>
+              </v-overlay>
+            </v-img>
+          </v-card>
+        </router-link>
+      </v-col>
+    </v-row>
+  </v-container>
 </template>
 
-<script setup>
-import { ref, computed, watch } from 'vue';
-import foto1 from '../assets/foto1.jpg';
-import foto2 from '../assets/foto2.jpg';
-import foto3 from '../assets/foto3.jpg';
-import foto4 from '../assets/foto4.jpg';
-import foto5 from '../assets/foto5.jpg';
-import foto7 from '../assets/foto7.jpg';    
-import foto8 from '../assets/foto8.jpg';
+<script>
+// Make sure to import your images.
+import photographyImage from '../assets/fotoportaf.jpg'; // Example image for photography
+import videoImage from '../assets/fotovideo.jpg'; // Example image for videos
+import droneImage from '../assets/drone.jpg'; // Example image for drone
 
-const selectedMediaType = ref('fotografias');
-const selectedCategory = ref(null);
-
-const categories = {
-    fotografias: [
-        { text: 'Fotos de los Arias', value: 'fotos_arias' },
-        { text: 'Sesiones generales', value: 'sesiones_generales' },
-        { text: 'Comida', value: 'comida' },
-        { text: 'Deportiva', value: 'deportiva' },
-    ],
-    videos: [
-        { text: 'Videos Corporativos', value: 'videos_corporativos' },
-        { text: 'Eventos', value: 'eventos_video' },
-        { text: 'Animación', value: 'animacion' },
-    ],
-    drone: [
-        { text: 'Tomas Aéreas', value: 'tomas_aereas' },
-        { text: 'Inspección', value: 'inspeccion' },
-    ],
+export default {
+  name: 'Portfolio',
+  data() {
+    return {
+      activeCategory: 'Fotografías', // Default active category
+      categories: [
+        { name: 'Fotografías', route: '/fotografias', imageUrl: photographyImage, class: 'gradient-orange' },
+        { name: 'Videos', route: '/videos', imageUrl: videoImage, class: 'gradient-pink' },
+        { name: 'Drone', route: '/drone', imageUrl: droneImage, class: 'gradient-orange' }
+      ],
+     
+    
+    };
+  },
+  computed: {
+    currentCategoryData() {
+      return this.categories.find(cat => cat.name === this.activeCategory);
+    },
+    currentCategoryRoute() {
+      return this.currentCategoryData ? this.currentCategoryData.route : '/';
+    },
+    currentCategoryImageUrl() {
+      return this.currentCategoryData ? this.currentCategoryData.imageUrl : '';
+    },
+    currentCategoryClass() {
+      return this.currentCategoryData ? this.currentCategoryData.class : '';
+    }
+  },
+  methods: {
+    setActiveCategory(category) {
+      this.activeCategory = category;
+    },
+    setActivePhotographySubcategory(subcategory) {
+      this.activePhotographySubcategory = subcategory;
+    },
+  }
 };
-
-const portfolioItems = ref([
-    // Fotografías
-   { id: 'fa1', type: 'image', mediaType: 'fotografias', category: 'fotos_arias', src: foto1, alt: 'Cámara vintage y lentes' },
-    { id: 'fa2', type: 'image', mediaType: 'fotografias', category: 'fotos_arias', src: foto2, alt: 'Fotógrafo tomando una foto' },
-    { id: 'fa3', type: 'image', mediaType: 'fotografias', category: 'fotos_arias', src: foto3, alt: 'Cámara DSLR y equipo' },
-
-    { id: 'sg1', type: 'image', mediaType: 'fotografias', category: 'sesiones_generales', src: foto4, alt: 'Sesión General 1 - persona con cámara' },
-    { id: 'sg2', type: 'image', mediaType: 'fotografias', category: 'sesiones_generales', src: foto5, alt: 'Sesión General 2 - fotografía de calle' },
-
-    { id: 'c1', type: 'image', mediaType: 'fotografias', category: 'comida', src: foto7, alt: 'Fotografía de comida 1' },
-    { id: 'c2', type: 'image', mediaType: 'fotografias', category: 'comida', src: foto8, alt: 'Fotografía de comida 2' },
-
-    { id: 'd1', type: 'image', mediaType: 'fotografias', category: 'deportiva', src: 'https://images.unsplash.com/photo-1579953932986-7734891152a4?auto=format&fit=crop&q=80&w=600&h=400', alt: 'Fotografía deportiva 1' },
-    { id: 'd2', type: 'image', mediaType: 'fotografias', category: 'deportiva', src: 'https://images.unsplash.com/photo-1628172901614-38c64267606e?auto=format&fit=crop&q=80&w=600&h=400', alt: 'Fotografía deportiva 2' },
-
-    // Videos
-    { id: 'vc1', type: 'video', mediaType: 'videos', category: 'videos_corporativos', src: '', alt: 'Video Corporativo 1' },
-    { id: 'vc2', type: 'video', mediaType: 'videos', category: 'videos_corporativos', src: '', alt: 'Video Corporativo 2' },
-    { id: 'ev1', type: 'video', mediaType: 'videos', category: 'eventos_video', src: '', alt: 'Evento Video 1' },
-
-    // Drone
-    { id: 'ta1', type: 'video', mediaType: 'drone', category: 'tomas_aereas', src: '', alt: 'Toma Aérea 1' },
-    { id: 'ta2', type: 'video', mediaType: 'drone', category: 'inspeccion', src: '', alt: 'Toma Aérea 2' }, // Asigné la categoría "inspeccion"
-]);
-
-// Cuando cambie el tipo de medio, actualizamos la categoría seleccionada a la primera disponible
-watch(selectedMediaType, (newType) => {
-    const currentCategories = categories[newType] || [];
-    selectedCategory.value = currentCategories.length > 0 ? currentCategories[0].value : null;
-}, { immediate: true });
-
-const filteredCategories = computed(() => {
-    return categories[selectedMediaType.value] || [];
-});
-
-const filteredPortfolioItems = computed(() => {
-    return portfolioItems.value.filter(item =>
-        item.mediaType === selectedMediaType.value && item.category === selectedCategory.value
-    );
-});
 </script>
 
 <style scoped>
+/* Overall container and text styles */
 .portfolio-container {
-    background-color: #000000;
-    color: white;
-    padding: 40px 0;
+  background-color: #000;
+  color: #fff;
+  padding: 40px 16px; /* Added horizontal padding for smaller screens */
+  font-family: sans-serif;
 }
 
-h1 {
-    color: white;
+.portfolio-title {
+  font-size: 3em;
+  margin-bottom: 10px;
+  text-align: center;
 }
 
-p {
-    color: rgba(255, 255, 255, 0.7);
+.portfolio-description {
+  font-size: 1.2em;
+  margin-bottom: 40px;
+  max-width: 800px;
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
 }
 
-.media-type-toggle .v-btn {
-    background-color: transparent !important;
-    color: rgba(255, 255, 255, 0.7) !important;
-    border-radius: 20px;
-    text-transform: none;
-    font-weight: 500;
-    padding: 0 20px;
-    height: 44px;
+/* Category and Subcategory Buttons */
+.category-btn,
+.subcategory-btn {
+  background-color: transparent !important;
+  color: #fff !important;
+  border: 1px solid #333 !important;
+  padding: 10px 20px !important;
+  border-radius: 20px !important;
+  font-size: 1.1em !important;
+  transition: background-color 0.3s ease, border-color 0.3s ease, color 0.3s ease !important;
+  text-transform: none !important; /* Prevent Vuetify from making text uppercase */
 }
 
-.media-type-toggle .v-btn.v-btn--active {
-    background-color: #673AB7 !important;
-    color: white !important;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+.active-category-btn,
+.category-btn:hover:not(.active-category-btn) {
+  background-color: #333 !important;
+  border-color: #fff !important;
 }
 
-.category-chip {
-    color: white !important;
-    border-color: rgba(255, 255, 255, 0.3) !important;
-    background-color: transparent !important;
-    border-radius: 20px;
-    margin: 4px;
-    text-transform: none;
-    cursor: pointer;
+.subcategory-btn {
+  background-color: #222 !important;
+  border-color: #444 !important;
 }
 
-.selected-chip {
-    background-color: #673AB7 !important;
-    border-color: #673AB7 !important;
-    font-weight: 600;
+.active-subcategory-btn,
+.subcategory-btn:hover:not(.active-subcategory-btn) {
+  background-color: #fff !important;
+  color: #000 !important;
 }
 
-.portfolio-item-card {
-    width: 100%;
-    max-width: 400px;
-    height: 300px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    border-radius: 12px;
-    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.4);
-    overflow: hidden;
-    background-color: #1a1a1a;
+
+/* Main Portfolio Card and Image */
+.router-link-wrapper {
+  text-decoration: none; /* Remove underline from router-link */
+  display: block; /* Ensures card takes full width of col */
+  width: 100%; /* Important for responsiveness within v-col */
 }
 
-.portfolio-media {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    color: white;
+.portfolio-main-card {
+  border-radius: 10px !important;
+  overflow: hidden;
+  transition: transform 0.3s ease, box-shadow 0.3s ease; /* Removed width from transition */
+  cursor: pointer;
+  height: 400px; /* Fixed height for consistency */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4) !important;
 }
 
-.video-placeholder {
-    background: linear-gradient(to top right, #333333, #1a1a1a);
-    font-size: 1.2rem;
-    font-weight: 500;
-    text-align: center;
+.portfolio-main-card:hover {
+  transform: translateY(-5px) scale(1.02); /* Slight lift and scale */
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.6) !important; /* Stronger shadow */
 }
 
-.video-text {
-    margin-top: 8px;
-    font-size: 0.9rem;
-    color: rgba(255, 255, 255, 0.7);
+/* Apply gradient backgrounds */
+.gradient-orange {
+  background: linear-gradient(to right, #ff7e5f, #feb47b) !important;
 }
 
-@media (max-width: 600px) {
-    .media-type-toggle .v-btn {
-        padding: 0 12px;
-        font-size: 0.8rem;
-        height: 38px;
-    }
-
-    .category-chip {
-        font-size: 0.8rem;
-        padding: 0 10px;
-        height: 32px;
-    }
-
-    .portfolio-item-card {
-        height: 250px;
-    }
-
-    .portfolio-media .v-icon {
-        font-size: 72px !important;
-    }
+.gradient-pink {
+  background: linear-gradient(to right, #ee9ca7, #ffdde1) !important;
 }
 
-@media (min-width: 601px) and (max-width: 960px) {
-    .portfolio-item-card {
-        height: 280px;
-    }
+.portfolio-main-image {
+  width: 100%;
+  height: 100%;
+  /* `object-fit: cover;` is now handled by Vuetify's `cover` prop on v-img */
+  transition: transform 0.3s ease; /* Smooth transition for hover */
+}
 
-    .portfolio-media .v-icon {
-        font-size: 80px !important;
-    }
+/* Specific hover effect for the image to make it slightly wider */
+.portfolio-main-card:hover .portfolio-main-image {
+  transform: scale(1.05); /* Slightly enlarge the image itself */
+}
+
+/* --- New Styles for Overlays --- */
+
+/* Always visible "Portafolio" text */
+.main-portfolio-text {
+  color: #fff;
+  font-size: 3em; /* Adjust size as needed */
+  font-weight: bold;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7); /* Add shadow for readability */
+  pointer-events: none; /* Allows clicks to pass through to the router-link */
+}
+
+/* Hover overlay for "Ver Contenido" */
+.hover-overlay {
+  background-color: rgba(0, 0, 0, 0) !important; /* Start fully transparent */
+  transition: background-color 0.3s ease, opacity 0.3s ease; /* Smooth transition */
+}
+
+.portfolio-main-card:hover .hover-overlay {
+  background-color: rgba(0, 0, 0, 0.6) !important; /* Darker background on hover */
+}
+
+.view-details-text {
+  color: #fff;
+  font-size: 1.5em;
+  font-weight: bold;
+  opacity: 0; /* Hidden by default */
+  transition: opacity 0.3s ease;
+}
+
+.portfolio-main-card:hover .view-details-text {
+  opacity: 1; /* Show text on hover */
+}
+
+/* Responsive adjustments */
+@media (max-width: 600px) { /* For extra small screens */
+  .portfolio-title {
+    font-size: 2.2em;
+  }
+  .portfolio-description {
+    font-size: 1em;
+  }
+  .category-btn, .subcategory-btn {
+    font-size: 0.9em !important;
+    padding: 8px 15px !important;
+  }
+  .portfolio-main-card {
+    height: 300px; /* Adjust height for smaller screens */
+  }
+  .main-portfolio-text {
+    font-size: 2em; /* Smaller text on small screens */
+  }
 }
 </style>

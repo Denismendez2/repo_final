@@ -2,10 +2,10 @@
   <section class="about-section">
     <div class="about-content-wrapper">
       <div class="about-left">
-        <img src="../assets/foto8.jpg" alt="Sobre mí" class="about-image" />
+        <img src="../assets/fotoabout.jpg" alt="Sobre mí" class="about-image" />
       </div>
       <div class="about-right">
-        <h2 class="section-title">Sobre Mí</h2>
+        <h2 class="section-title">SobrAe Mí</h2>
         <p class="description">
           Soy un fotógrafo y videógrafo apasionado con más de 10 años de
           experiencia capturando momentos únicos y creando narrativas visuales

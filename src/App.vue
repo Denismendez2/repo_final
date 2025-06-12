@@ -2,7 +2,7 @@
   <v-app>
     <Menu />
     <v-main>
-      <router-view />
+      <router-view to="/" />
     </v-main>
   </v-app>
 </template>
