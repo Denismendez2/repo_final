@@ -67,13 +67,13 @@ export default {
         {
           name: 'Fotografía de Comida',
           route: '/ImageCollage',
-          imageUrl: placeholderImage1, // Usa tu propia imagen para esta categoría
+          imageUrl: placeholderImage1, 
           class: 'gradient-pink',
         },
         {
           name: 'Fotografía Deportiva',
           route: '/fotografias/deportiva',
-          imageUrl: placeholderImage2, // Usa tu propia imagen para esta categoría
+          imageUrl: placeholderImage2,
           class: 'gradient-orange',
         },
         {
