@@ -3,6 +3,10 @@
     <HeroSection />
     <AboutSection />
     <PortfolioSection />
+    <TestimoniosSection />
+    <ContactanosSection />
+    <FooterSection/>
+
     <!-- Nueva sección de contenido adicional para hacer la vista más larga -->
     <section class="additional-content">
  
@@ -14,15 +18,24 @@
 import HeroSection from '../components/HeroSection.vue'
 import AboutSection from '../components/AboutSection.vue'
 import PortfolioSection from '../components/PortfolioSection.vue';
+import TestimoniosSection from '../components/TestimoniosSection.vue';
+import ContactanosSection from '../components/ContactanosSection.vue'
+import FooterSection from '../components/FooterSection.vue';
+
 </script>
 
 <style scoped>
 div {
-  min-height: 100vh;
   display: flex;
   flex-direction: column;
+  min-height: 100vh;
 }
 
+footer {
+  width: 100%;
+  background-color: #111;
+  color: #fff;
+}
 .additional-content {
   background-color: #1a1a1a;
   color: #f0f0f0;

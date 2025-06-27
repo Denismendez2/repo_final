@@ -1,64 +1,54 @@
 <template>
-  <section class="about-section">
+  <section
+    id="about"
+    ref="aboutRef"
+    :class="['about-section', isVisible ? 'animate__animated animate__fadeInUp' : '']"
+  >
     <div class="about-content-wrapper">
       <div class="about-left">
-        <img src="../assets/fotoabout.jpg" alt="Sobre mí" class="about-image" />
+        <div class="about-media">
+          <img src="../assets/fotoabout.jpg" alt="Sobre mí" class="about-image" />
+
+          <!-- Redes sociales -->
+          <div class="social-links">
+            <a href="https://instagram.com/tu_usuario" target="_blank" class="social-icon">
+              <i class="fab fa-instagram"></i>
+            </a>
+            <a href="https://tiktok.com/@tu_usuario" target="_blank" class="social-icon">
+              <i class="fab fa-tiktok"></i>
+            </a>
+            <a href="https://linkedin.com/in/tu_usuario" target="_blank" class="social-icon">
+              <i class="fab fa-linkedin-in"></i>
+            </a>
+          </div>
+        </div>
       </div>
+
       <div class="about-right">
-        <h2 class="section-title">SobrAe Mí</h2>
+        <h2 class="section-title">Sobre mí</h2>
         <p class="description">
-          Soy un fotógrafo y videógrafo apasionado con más de 10 años de
-          experiencia capturando momentos únicos y creando narrativas visuales
-          impactantes. Mi enfoque combina técnica profesional con una visión
-          artística distintiva.
+          Soy un fotógrafo y videógrafo apasionado con más de 10 años de experiencia...
         </p>
         <p class="description">
-          Mi objetivo es transformar tus ideas en imágenes y videos que cuenten
-          historias, generen emociones y destaquen tu marca o proyecto. Trabajo
-          estrechamente con cada cliente para entender sus necesidades y
-          superar sus expectativas.
+          Mi objetivo es transformar tus ideas en imágenes...
         </p>
         <div class="details-grid">
           <div class="specialties">
             <h3>Especialidades</h3>
             <ul>
-              <li>
-                <span class="icon">&#10003;</span>
-                <span>Fotografía de eventos</span>
-              </li>
-              <li>
-                <span class="icon">&#10003;</span>
-                <span>Retratos profesionales</span>
-              </li>
-              <li>
-                <span class="icon">&#10003;</span>
-                <span>Videografía comercial</span>
-              </li>
-              <li>
-                <span class="icon">&#10003;</span>
-                <span>Fotografía deportiva</span>
-              </li>
+              <li><span class="icon">&#10003;</span>Fotografía de eventos</li>
+              <li><span class="icon">&#10003;</span>Retratos profesionales</li>
+              <li><span class="icon">&#10003;</span>Videografía comercial</li>
+              <li><span class="icon">&#10003;</span>Fotografía deportiva</li>
             </ul>
           </div>
           <div class="equipment">
             <h3>Equipamiento</h3>
             <ul>
-              <li>
-                <span class="icon">&#128247;</span>
-                <span>Cámaras profesionales</span>
-              </li>
-              <li>
-                <span class="icon">&#128746;</span>
-                <span>Drones de última generación</span>
-              </li>
-              <li>
-                <span class="icon">&#128187;</span>
-                <span>Equipo de video 4K</span>
-              </li>
-              <li>
-                <span class="icon">&#128161;</span>
-                <span>Iluminación profesional</span>
-              </li>
+              <li><span class="icon">&#128247;</span>Cámaras profesionales</li>
+              <li><span class="icon">&#128746;</span>Drones de última generación</li>
+              <li><span class="icon">&#128187;</span>Equipo de video 4K</li>
+              <li><span class="icon">&#128161;</span>Iluminación profesional</li>
             </ul>
           </div>
         </div>
@@ -67,13 +57,48 @@
   </section>
 </template>
 
-<script>
-export default {
-  name: 'AboutSection',
-};
+
+<script setup>
+import { ref, onMounted } from 'vue'
+
+const aboutRef = ref(null)
+const isVisible = ref(false)
+
+onMounted(() => {
+  const observer = new IntersectionObserver(
+    ([entry]) => {
+      if (entry.isIntersecting) {
+        isVisible.value = true
+      }
+    },
+    { threshold: 0.3 }
+  )
+
+  if (aboutRef.value) {
+    observer.observe(aboutRef.value)
+  }
+})
 </script>
 
+
 <style scoped>
+@keyframes smoothFadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(40px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.about-section.fade-in-up {
+  animation: smoothFadeUp 1s ease forwards;
+}
+
+
+
 .about-section {
   background-color: #0d0d0d;
   color: #f0f0f0;
@@ -116,6 +141,11 @@ export default {
   flex-direction: column;
 }
 
+.about-media {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
 .section-title {
   font-size: 2.8em;
   color: #f0f0f0;
@@ -169,6 +199,33 @@ export default {
 .equipment .icon {
   color: #64B5F6;
 }
+.social-links {
+  margin: 24px 0 0;
+  display: flex;
+  gap: 20px;
+  justify-content: center;
+}
+
+.social-icon {
+  font-size: 1.6rem;
+  color: white;
+  transition: transform 0.3s ease, color 0.3s ease;
+}
+
+.social-icon:hover {
+  transform: scale(1.2);
+  color: #bbbbbb;
+}
+
+.about-section {
+  background: linear-gradient(to bottom, #111, #0d0d0d);
+}
+
+
+.social-link.ig { background-color: #E1306C; }
+.social-link.tiktok { background-color: #000000; }
+.social-link.linkedin { background-color: #0077B5; }
+
 
 @media (max-width: 992px) {
   .about-content-wrapper {

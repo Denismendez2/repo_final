@@ -26,6 +26,10 @@ const store = createStore({
       return state.count * 2
     }
   }
+
+  
 })
+
+
 
 export default store

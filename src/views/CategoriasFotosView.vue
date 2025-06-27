@@ -3,7 +3,9 @@
     <v-row justify="center" class="text-center mb-10">
       <v-col cols="12">
         <h1 class="gallery-title">Nuestras Fotografías</h1>
-        <p class="gallery-description">Explora nuestras colecciones fotográficas por categorías. Haz clic para ver el portafolio completo de cada especialidad.</p>
+        <p class="gallery-description">
+          Explora nuestras colecciones fotográficas por categorías. Haz clic para ver el portafolio completo de cada especialidad.
+        </p>
       </v-col>
     </v-row>
 
@@ -12,9 +14,7 @@
         v-for="category in photoCategories"
         :key="category.name"
         cols="12"
-        sm="6"
-        md="4"
-        class="d-flex"
+        class="d-flex justify-center"
       >
         <router-link :to="category.route" class="gallery-router-link">
           <v-card
@@ -23,29 +23,19 @@
             :elevation="10"
             hover
           >
-            <v-img
-              :src="category.imageUrl"
-              :alt="category.name"
-              class="gallery-card-image"
-              cover
-              height="250px"
-            >
-              <v-overlay
-                absolute
-                opacity="0"
-                class="d-flex align-center justify-center"
-              >
+            <div class="image-overlay-wrapper">
+              <v-img
+                :src="category.imageUrl"
+                :alt="category.name"
+                class="gallery-card-image"
+                cover
+                height="350px"
+              ></v-img>
+              <div class="overlay-text">
                 <div class="card-category-name">{{ category.name }}</div>
-              </v-overlay>
-
-              <v-overlay
-                absolute
-                opacity="0"
-                class="d-flex align-center justify-center hover-overlay"
-              >
-                <span class="view-more-text">Ver Más</span>
-              </v-overlay>
-            </v-img>
+                <div class="view-more-text">Ver Más</div>
+              </div>
+            </div>
           </v-card>
         </router-link>
       </v-col>
@@ -54,47 +44,48 @@
 </template>
 
 <script>
-// ¡Importante! Reemplaza estas rutas de importación o URLs con tus propias imágenes.
-// La imagen de Google Drive se utiliza directamente en el data().
-import placeholderImage1 from '../assets/foto7.jpg'; // Imagen de ejemplo 1
-import placeholderImage2 from '../assets/foto8.jpg'; // Imagen de ejemplo 2
-
 export default {
   name: 'PhotographyGallery',
   data() {
     return {
       photoCategories: [
-        {
-          name: 'Fotografía de Comida',
-          route: '/ImageCollage',
-          imageUrl: placeholderImage1, 
-          class: 'gradient-pink',
-        },
-        {
-          name: 'Fotografía Deportiva',
-          route: '/fotografias/deportiva',
-          imageUrl: placeholderImage2,
-          class: 'gradient-orange',
-        },
-        {
-          name: 'Sesiones Generales',
-          route: '/ImageCollage',
-          // Aquí utilizamos la imagen directamente desde Google Drive
-          imageUrl: 'https://drive.google.com/uc?export=view&id=1aplzGXcUb7r5q6ks4VOcF4L2ulOhBhR8',
-          class: 'gradient-blue', // Nuevo gradiente para esta categoría
-        },
-        // Puedes añadir más categorías aquí siguiendo el mismo patrón:
-        // {
-        //   name: 'Fotos de los Arias',
-        //   route: '/fotografias/fotos-de-los-arias',
-        //   imageUrl: 'URL_DE_TU_IMAGEN_DE_LOS_ARIAS', // ¡No olvides tu imagen!
-        //   class: 'gradient-green', // Otro gradiente si lo deseas
-        // },
-      ],
+  {
+    name: 'Hermanos Arias',
+    route: '/fotografias/hermanosarias',
+    imageUrl: 'https://ik.imagekit.io/levimendozaph/Hermanos%20Arias/_MG_5916.jpg?tr=w-1200,h-800,rt-auto',
+    class: 'gradient-pink',
+  },
+  {
+    name: 'Deportivas',
+    route: '/fotografias/deportivas',
+    imageUrl: 'https://ik.imagekit.io/levimendozaph/Home%20images/_MG_0287.jpg?tr=w-1200,h-600,rt-auto',
+    class: 'gradient-orange',
+  },
+  {
+    name: 'Eventos',
+    route: '/fotografias/eventos',
+    imageUrl: 'https://ik.imagekit.io/levimendozaph/Eventos/_MG_3886.jpg?tr=w-1200,h-600,rt-auto',
+    class: 'gradient-blue',
+  },
+  {
+    name: 'Hunters',
+    route: '/fotografias/hunters',
+    imageUrl: 'https://ik.imagekit.io/levimendozaph/Hunters/_MG_5671.jpg?tr=w-1200,h-600,rt-auto',
+    class: 'gradient-blue',
+  },
+  {
+    name: 'Sesiones Generales',
+    route: '/fotografias/sesionesgenerales',
+    imageUrl: 'https://ik.imagekit.io/levimendozaph/Sesiones%20generales/_MG_5322.jpg?tr=w-1200,h-600,rt-auto',
+    class: 'gradient-blue',
+  },
+],
+
     };
   },
 };
 </script>
+
 
 <style scoped>
 .photography-gallery-container {
@@ -116,100 +107,104 @@ export default {
   font-size: 1.3em;
   margin-bottom: 50px;
   max-width: 900px;
-  margin-left: auto;
-  margin-right: auto;
+  margin: 0 auto 50px auto;
   text-align: center;
   color: #b0b0b0;
 }
 
-.gallery-cards-row {
-  max-width: 1200px;
-  margin: 0 auto;
-}
-
 .gallery-router-link {
   text-decoration: none;
-  width: 100%; /* Hace que el enlace ocupe todo el ancho de la columna */
-  display: flex; /* Asegura que la tarjeta se extienda */
+  width: 100%;
+  display: flex;
+  justify-content: center;
 }
 
 .gallery-card {
-  border-radius: 12px !important;
+  border-radius: 12px;
   overflow: hidden;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
   cursor: pointer;
-  width: 100%; /* La tarjeta ocupa todo el ancho del enlace/columna */
-  height: 100%; /* La tarjeta ocupa toda la altura de la columna */
-  display: flex;
-  flex-direction: column; /* Apila la imagen y el posible título interno */
+  width: 100%;
+  max-width: 80%;
+  margin: auto;
 }
 
 .gallery-card:hover {
-  transform: translateY(-8px) scale(1.03); /* Un levantamiento y escala más pronunciados al pasar el ratón */
-  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.7) !important; /* Sombra más fuerte */
+  transform: translateY(-8px) scale(1.03);
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.7);
 }
 
-/* Aplica los fondos degradados (reutilizados del Portfolio, puedes añadir nuevos si es necesario) */
 .gradient-orange {
-  background: linear-gradient(to right, #ff7e5f, #feb47b) !important;
+  background: linear-gradient(to right, #ff7e5f, #feb47b);
 }
-
 .gradient-pink {
-  background: linear-gradient(to right, #ee9ca7, #ffdde1) !important;
+  background: linear-gradient(to right, #ee9ca7, #ffdde1);
 }
-
-/* Nuevo gradiente para añadir variedad */
 .gradient-blue {
-  background: linear-gradient(to right, #6dd5ed, #2193b0) !important;
+  background: linear-gradient(to right, #6dd5ed, #2193b0);
 }
 .gradient-green {
-  background: linear-gradient(to right, #83a4d4, #b6fbff) !important;
+  background: linear-gradient(to right, #83a4d4, #b6fbff);
 }
 
-
 .gallery-card-image {
-  /* La propiedad `cover` de Vuetify ya maneja object-fit: cover */
   transition: transform 0.3s ease;
+  width: 100%;
+  height: 100%;
 }
 
 .gallery-card:hover .gallery-card-image {
-  transform: scale(1.08); /* La imagen se agranda más al pasar el ratón */
+  transform: scale(1.08);
 }
 
-/* Overlays para el texto */
+.image-overlay-wrapper {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+.overlay-text {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.4);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  z-index: 2;
+  transition: background-color 0.3s ease;
+}
+
+.gallery-card:hover .overlay-text {
+  background-color: rgba(0, 0, 0, 0.7);
+}
+
 .card-category-name {
   color: #fff;
-  font-size: 2.2em; /* Texto más grande para el nombre de la categoría */
+  font-size: 2.2em;
   font-weight: bold;
   text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.8);
-  pointer-events: none; /* Permite que los clics pasen al enlace de la tarjeta */
-  padding: 10px;
   text-align: center;
-}
-
-.hover-overlay {
-  background-color: rgba(0, 0, 0, 0) !important; /* Empieza transparente */
-  transition: background-color 0.3s ease, opacity 0.3s ease;
-}
-
-.gallery-card:hover .hover-overlay {
-  background-color: rgba(0, 0, 0, 0.7) !important; /* Fondo más oscuro al pasar el ratón */
+  margin-bottom: 10px;
 }
 
 .view-more-text {
   color: #fff;
-  font-size: 1.8em; /* Texto ligeramente más grande para "Ver Más" */
+  font-size: 1.3em;
   font-weight: bold;
-  opacity: 0; /* Oculto por defecto */
+  opacity: 0;
   transition: opacity 0.3s ease;
 }
 
 .gallery-card:hover .view-more-text {
-  opacity: 1; /* Muestra el texto al pasar el ratón */
+  opacity: 1;
 }
 
-/* Ajustes responsivos */
-@media (max-width: 960px) { /* Para pantallas medianas (md) */
+/* Responsivo */
+@media (max-width: 960px) {
   .gallery-title {
     font-size: 2.8em;
   }
@@ -220,14 +215,14 @@ export default {
     font-size: 1.8em;
   }
   .view-more-text {
-    font-size: 1.4em;
+    font-size: 1.2em;
   }
   .gallery-card-image {
-    height: 200px; /* Ajusta la altura para pantallas medianas */
+    height: 280px;
   }
 }
 
-@media (max-width: 600px) { /* Para pantallas pequeñas (sm) */
+@media (max-width: 600px) {
   .gallery-title {
     font-size: 2.2em;
   }
@@ -238,10 +233,10 @@ export default {
     font-size: 1.5em;
   }
   .view-more-text {
-    font-size: 1.2em;
+    font-size: 1.1em;
   }
   .gallery-card-image {
-    height: 180px; /* Ajusta la altura para pantallas pequeñas */
+    height: 200px;
   }
   .photography-gallery-container {
     padding: 40px 10px;

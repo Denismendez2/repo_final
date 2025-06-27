@@ -1,180 +1,174 @@
 <template>
-  <section class="hero-section">
-    <div class="background-grid">
-      <div class="grid-item grid-item-1"></div>
-      <div class="grid-item grid-item-2"></div>
-      <div class="grid-item grid-item-3"></div>
-      <div class="grid-item grid-item-4"></div>
-      <div class="grid-item grid-item-5"></div>
-      <div class="grid-item grid-item-6"></div>
-    </div>
+  <section id="home">
+  <section class="hero-wrapper">
+    <div class="carousel-container">
+  <img
+    v-for="(image, index) in carouselImages"
+    :key="image.url"
+    :src="image.url"
+    class="carousel-image"
+    :class="{ active: index === currentIndex }"
+    alt="Imagen de carrusel"
+  />
+</div>
 
-    <div class="content-overlay">
+
+    <div class="overlay-content">
       <h1 class="main-title">Capturando Momentos, Creando Arte</h1>
       <p class="subtitle">
         Fotografía y videografía profesional para transformar tus ideas en realidad visual
       </p>
-      <div class="button-container">
-        <button class="btn primary">Ver Portafolio</button>
-        <button class="btn secondary">Contactar</button>
+      <div class="hero-buttons">
+        <button class="btn-hero primary" @click.prevent="navigateAndScroll('portfolio')">Ver Portafolio</button>
+        <button class="btn-hero secondary" @click="scrollToSection('contacto')">Contactar</button>
       </div>
     </div>
+  </section>
   </section>
 </template>
 
 <script>
 export default {
   name: 'HeroSection',
+  data() {
+    return {
+      currentIndex: 0,
+      carouselImages: [
+        { url: 'https://ik.imagekit.io/levimendozaph/Hunters/_MG_5661.jpg' },
+        { url: 'https://ik.imagekit.io/levimendozaph/Sesiones%20generales/_MG_5404.jpg' },
+        { url: 'https://ik.imagekit.io/levimendozaph/Eventos/_MG_4065.jpg' },
+        { url: 'https://ik.imagekit.io/levimendozaph/Deportes/_MG_0393.jpg' }
+      ]
+    };
+  },
+  mounted() {
+    setInterval(() => {
+      this.currentIndex = (this.currentIndex + 1) % this.carouselImages.length;
+    }, 10000); // transición cada 10s
+  },
+  methods: {
+    scrollToSection(id) {
+      const target = document.getElementById(id);
+      if (target) target.scrollIntoView({ behavior: 'smooth' });
+    },navigateAndScroll(id) {
+  this.$router.push({ hash: `#${id}` }).then(() => {
+    const el = document.getElementById(id);
+    if (el) el.scrollIntoView({ behavior: 'smooth' });
+  });
+}
+
+  }
 };
 </script>
 
 <style scoped>
-.hero-section {
+.hero-wrapper {
   position: relative;
   width: 100%;
-  height: 100vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  height: 100dvh; /* Altura visible exacta */
   overflow: hidden;
-  background-color: #1a1a1a;
 }
 
-.background-grid {
+.carousel-container {
   position: absolute;
-  top: 0;
-  left: 0;
   width: 100%;
   height: 100%;
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  grid-template-rows: repeat(2, 1fr);
-  gap: 0;
+  top: 0;
+  left: 0;
+}
+
+.carousel-image {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  opacity: 0;
+  transition: opacity 2.5s ease-in-out; /* suave fade */
+  z-index: 0;
+}
+
+.carousel-image.active {
+  opacity: 1;
   z-index: 1;
 }
 
-.grid-item {
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-  filter: brightness(0.6);
+
+/* Transición elegante */
+@keyframes fadeIn {
+  0% { opacity: 0; }
+  100% { opacity: 1; }
 }
 
-/* Imágenes personalizadas por sección */
-.grid-item-1 {
-  grid-column: 1;
-  grid-row: 1;
-  background-image: url('../assets/foto1.jpg');
-}
-.grid-item-2 {
-  grid-column: 2 / span 2;
-  grid-row: 1;
-  background-image: url('../assets/foto2.jpg');
-}
-.grid-item-3 {
-  grid-column: 3;
-  grid-row: 1;
-  background-image: url('../assets/foto3.jpg');
-}
-.grid-item-4 {
-  grid-column: 1;
-  grid-row: 2;
-  background-image: url('../assets/foto4.jpg');
-}
-.grid-item-5 {
-  grid-column: 2;
-  grid-row: 2;
-  background-image: url('../assets/foto5.jpg');
-}
-.grid-item-6 {
-  grid-column: 3;
-  grid-row: 2;
-  background-image: url('../assets/foto7.jpg');
-}
-
-.content-overlay {
+.overlay-content {
   position: relative;
-  text-align: center;
+  z-index: 1;
   color: #fff;
-  z-index: 2;
-  padding: 20px;
-  max-width: 800px;
+  text-align: center;
+  padding: 2rem;
+  top: 50%;
+  transform: translateY(-50%);
+  max-width: 850px;
   margin: 0 auto;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
+  background-color: rgba(0,0,0,0.4);
+  backdrop-filter: blur(4px);
+  border-radius: 1rem;
 }
 
 .main-title {
-  font-size: 3.5em;
-  margin-bottom: 0.2em;
-  line-height: 1.1;
-  font-weight: bold;
+  font-size: 3rem;
+  font-weight: 700;
+  margin-bottom: 1rem;
 }
 
 .subtitle {
-  font-size: 1.3em;
-  margin-bottom: 2em;
-  max-width: 600px;
+  font-size: 1.2rem;
+  margin-bottom: 2rem;
 }
 
-.button-container {
+.hero-buttons {
   display: flex;
-  gap: 20px;
+  justify-content: center;
+  gap: 1rem;
 }
 
-.btn {
-  padding: 15px 30px;
+.btn-hero {
+  padding: 0.8rem 1.6rem;
   border: none;
-  border-radius: 5px;
+  font-size: 1rem;
+  border-radius: 999px;
   cursor: pointer;
-  font-size: 1em;
-  font-weight: bold;
-  transition: background-color 0.3s ease;
+  transition: 0.3s ease all;
 }
 
-.btn.primary {
-  background-color: #fff;
-  color: #333;
+.btn-hero.primary {
+  background: white;
+  color: #111;
+}
+.btn-hero.primary:hover {
+  background: #ddd;
 }
 
-.btn.primary:hover {
-  background-color: #e0e0e0;
+.btn-hero.secondary {
+  background: transparent;
+  border: 2px solid white;
+  color: white;
+}
+.btn-hero.secondary:hover {
+  background: white;
+  color: #111;
 }
 
-.btn.secondary {
-  background-color: transparent;
-  color: #fff;
-  border: 2px solid #fff;
-}
-
-.btn.secondary:hover {
-  background-color: rgba(255, 255, 255, 0.1);
-}
-
+/* Responsive */
 @media (max-width: 768px) {
   .main-title {
-    font-size: 2.5em;
+    font-size: 2rem;
   }
-
   .subtitle {
-    font-size: 1em;
+    font-size: 1rem;
   }
-
-  .button-container {
-    flex-direction: column;
-    gap: 10px;
-  }
-
-  .btn {
-    width: 100%;
-  }
-}
-
-@media (max-width: 480px) {
-  .main-title {
-    font-size: 2em;
+  .overlay-content {
+    padding: 1rem;
   }
 }
 </style>

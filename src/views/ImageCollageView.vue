@@ -3,67 +3,213 @@
     <v-row justify="center" class="text-center mb-10">
       <v-col cols="12">
         <h1 class="collage-title">Nuestra Galería Visual</h1>
-        <p class="collage-description">Sumérgete en nuestra colección de momentos y capturas especiales. Cada imagen cuenta una historia.</p>
+        <p class="collage-description">
+          Sumérgete en nuestra colección de momentos y capturas especiales. Cada imagen cuenta una historia.
+        </p>
       </v-col>
     </v-row>
 
-    <v-row justify="center" class="image-grid-row">
+    <!-- Layout para FOTOS -->
+    <div v-if="category !== 'videos'" class="masonry-grid">
+      <div
+        class="masonry-item"
+        v-for="(image, index) in images"
+        :key="index"
+        @click="openLightbox(index)"
+      >
+        <img
+          v-if="image.type !== 'video' && image.type !== 'iframe'"
+          :src="image.src"
+          :alt="image.alt"
+          class="masonry-image"
+        />
+      </div>
+    </div>
+
+    <!-- Layout para VIDEOS e IFRAMES -->
+    <v-row v-else dense>
       <v-col
         v-for="(image, index) in images"
         :key="index"
-        cols="12"
-        sm="6"
-        md="4"
-        lg="3"
-        class="d-flex"
+        :cols="12"
+        :md="image.ratio < 1 ? 4 : 8"
+        :lg="image.ratio < 1 ? 3 : 6"
+        class="mb-4"
       >
-        <v-card class="image-card" elevation="8" hover>
-          <v-img
-            :src="image.src"
-            :alt="image.alt"
-            class="collage-image"
-            aspect-ratio="1"
-            cover
-          >
-            <v-overlay absolute opacity="0" class="d-flex align-end justify-center image-overlay">
-              <span class="image-caption">{{ image.alt }}</span>
-            </v-overlay>
-          </v-img>
-        </v-card>
+        <div
+          class="media-container"
+          :class="{ vertical: image.ratio < 1 }"
+          :style="{ aspectRatio: image.ratio }"
+          @click="openLightbox(index)"
+        >
+          <template v-if="image.type === 'iframe'">
+            <iframe
+              :src="image.src"
+              :title="image.alt"
+              class="media-iframe"
+              frameborder="0"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+              allowfullscreen
+            ></iframe>
+          </template>
+          <template v-else>
+            <video
+              :src="image.src"
+              :poster="image.poster"
+              class="media-video"
+              playsinline
+              muted
+            ></video>
+          </template>
+        </div>
       </v-col>
     </v-row>
+
+    <!-- Lightbox -->
+    <div v-if="lightboxVisible" class="lightbox-overlay" @click.self="closeLightbox">
+      <button class="lightbox-button left" @click.stop="prevImage">&#10094;</button>
+
+      <div class="lightbox-content">
+        <template v-if="selectedImage.type === 'video'">
+          <video
+            :src="selectedImage.src"
+            :poster="selectedImage.poster"
+            class="lightbox-video"
+            :class="{ vertical: selectedImage.ratio < 1 }"
+            controls
+            autoplay
+            playsinline
+          ></video>
+        </template>
+        <template v-else-if="selectedImage.type === 'iframe'">
+          <iframe
+            :src="selectedImage.src"
+            :title="selectedImage.alt"
+            class="lightbox-video"
+            frameborder="0"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+            allowfullscreen
+          ></iframe>
+        </template>
+        <template v-else>
+          <img
+            :src="selectedImage.src"
+            :alt="selectedImage.alt"
+            class="lightbox-image"
+          />
+        </template>
+      </div>
+
+      <button class="lightbox-button right" @click.stop="nextImage">&#10095;</button>
+    </div>
+
+    <!-- Scroll to top button -->
+    <button
+      class="scroll-to-top-button"
+      :class="{ show: showScrollToTopButton }"
+      @click="scrollToTop"
+    >
+      ↑
+    </button>
   </v-container>
 </template>
 
 <script>
+import imageData from '../data/portfolioImagenes';
+
 export default {
   name: 'ImageCollageView',
   data() {
     return {
-      images: [
-        // ¡IMPORTANTE! Reemplaza estas URLs con las URLs directas de tus imágenes.
-        // Si usas Google Drive, asegúrate de que tengan permisos "Cualquier persona con el enlace puede ver".
-        // Formato de Google Drive: https://drive.google.com/uc?export=view&id=TU_ID_DE_ARCHIVO
-        { src: 'https://picsum.photos/id/237/400/400', alt: 'Perro en el parque' },
-        { src: 'https://picsum.photos/id/238/400/400', alt: 'Montañas y lago' },
-        { src: 'https://picsum.photos/id/239/400/400', alt: 'Calle de ciudad' },
-        { src: 'https://picsum.photos/id/240/400/400', alt: 'Café y libro' },
-        { src: 'https://picsum.photos/id/241/400/400', alt: 'Bosque otoñal' },
-        { src: 'https://picsum.photos/id/242/400/400', alt: 'Playa al atardecer' },
-        { src: 'https://picsum.photos/id/243/400/400', alt: 'Edificios altos' },
-        { src: 'https://picsum.photos/id/244/400/400', alt: 'Campo de flores' },
-        { src: 'https://picsum.photos/id/245/400/400', alt: 'Persona leyendo' },
-        { src: 'https://picsum.photos/id/246/400/400', alt: 'Instrumentos musicales' },
-        { src: 'https://picsum.photos/id/247/400/400', alt: 'Vista aérea' },
-        { src: 'https://picsum.photos/id/248/400/400', alt: 'Comida apetitosa' },
-        // Puedes añadir más imágenes aquí
-      ],
+      lightboxVisible: false,
+      selectedIndex: 0,
+      images: [],
+      showScrollToTopButton: false,
+      category: '', // 'fotografias', 'videos', etc.
     };
+  },
+  computed: {
+    selectedImage() {
+      return this.images[this.selectedIndex] || {};
+    },
+  },
+  watch: {
+    '$route.params': {
+      immediate: true,
+      deep: true,
+      handler(newParams) {
+  let category = newParams.category || this.$route.name || 'fotografias';
+
+  // Si la ruta es 'dron', entonces queremos usar el layout de videos
+  if (this.$route.name === 'dron') {
+    category = 'videos';
+  }
+
+  const dataKey = this.$route.name === 'dron' ? 'dron' : category;
+  const categoryData = imageData[dataKey];
+
+  this.category = category;
+
+  const subcategory = newParams.subcategory;
+
+  if (Array.isArray(categoryData)) {
+    this.images = categoryData;
+  } else if (subcategory && categoryData && categoryData[subcategory]) {
+    this.images = categoryData[subcategory];
+  } else {
+    this.images = [];
+  }
+}
+
+    }
+  },
+  mounted() {
+    window.addEventListener('scroll', this.handleScroll);
+  },
+  beforeUnmount() {
+    window.removeEventListener('scroll', this.handleScroll);
+  },
+  methods: {
+    openLightbox(index) {
+      this.selectedIndex = index;
+      this.lightboxVisible = true;
+    },
+    closeLightbox() {
+      this.lightboxVisible = false;
+    },
+    nextImage() {
+      this.selectedIndex = (this.selectedIndex + 1) % this.images.length;
+    },
+    prevImage() {
+      this.selectedIndex = (this.selectedIndex - 1 + this.images.length) % this.images.length;
+    },
+    scrollToTop() {
+      window.scrollTo({
+        top: 0,
+        behavior: 'smooth',
+      });
+    },
+    handleScroll() {
+      this.showScrollToTopButton = window.scrollY > 300;
+    },
   },
 };
 </script>
 
+
+
 <style scoped>
+
+.media-iframe {
+  width: 100%;
+  height: 100%;
+  border: none;
+  border-radius: 12px;
+  object-fit: cover;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.4);
+}
+
+
 .image-collage-container {
   background-color: #000;
   color: #fff;
@@ -72,96 +218,197 @@ export default {
   min-height: 100vh;
 }
 
+/* Titles */
 .collage-title {
   font-size: 3.5em;
   margin-bottom: 10px;
   text-align: center;
   color: #f0f0f0;
 }
-
 .collage-description {
   font-size: 1.3em;
   margin-bottom: 50px;
   max-width: 900px;
-  margin-left: auto;
-  margin-right: auto;
+  margin: 0 auto;
   text-align: center;
   color: #b0b0b0;
 }
 
-.image-grid-row {
-  max-width: 1400px; /* Ancho máximo para la cuadrícula */
-  margin: 0 auto;
+/* Masonry Grid */
+.masonry-grid {
+  column-count: 3;
+  column-gap: 1rem;
 }
-
-.image-card {
-  border-radius: 12px !important;
-  overflow: hidden;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+.masonry-item {
+  break-inside: avoid;
+  margin-bottom: 1rem;
   cursor: pointer;
+}
+.masonry-image,
+.media-container {
   width: 100%;
-  /* Define una altura fija o usa padding-bottom para mantener una relación de aspecto */
-  /* padding-bottom: 100%; para una relación 1:1, pero v-img aspect-ratio ya lo hace */
-}
-
-.image-card:hover {
-  transform: translateY(-5px) scale(1.02); /* Ligero levantamiento y escala */
-  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.6) !important; /* Sombra más fuerte */
-}
-
-.collage-image {
-  /* v-img con `cover` y `aspect-ratio` ya maneja el ajuste de la imagen */
+  display: block;
+  border-radius: 12px;
   transition: transform 0.3s ease;
 }
-
-.image-card:hover .collage-image {
-  transform: scale(1.05); /* Zoom ligero de la imagen al pasar el ratón */
+.masonry-image:hover,
+.media-video:hover {
+  transform: scale(1.03);
 }
 
-.image-overlay {
-  background: linear-gradient(to top, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0) 50%) !important;
-  opacity: 0; /* Oculto por defecto */
-  transition: opacity 0.3s ease;
+/* Lightbox */
+.lightbox-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.88);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+  padding: 20px;
 }
-
-.image-card:hover .image-overlay {
-  opacity: 1; /* Mostrar overlay al pasar el ratón */
+.lightbox-image,
+.lightbox-video {
+  max-width: 90%;
+  max-height: 90%;
+  border-radius: 12px;
+  box-shadow: 0 0 20px rgba(255, 255, 255, 0.2);
+  object-fit: contain;
 }
-
-.image-caption {
+.lightbox-button {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: rgba(255, 255, 255, 0.1);
+  border: none;
   color: #fff;
-  font-size: 1.1em;
-  font-weight: bold;
-  text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.7);
-  padding: 10px;
-  text-align: center;
+  font-size: 2.5em;
+  padding: 0 20px;
+  cursor: pointer;
+  z-index: 10000;
+  transition: background 0.2s ease;
+}
+.lightbox-button:hover {
+  background: rgba(255, 255, 255, 0.3);
+}
+.lightbox-button.left {
+  left: 20px;
+}
+.lightbox-button.right {
+  right: 20px;
 }
 
-/* Ajustes responsivos */
-@media (max-width: 960px) { /* md breakpoint */
-  .collage-title {
-    font-size: 2.8em;
-  }
-  .collage-description {
-    font-size: 1.1em;
-  }
-  .image-caption {
-    font-size: 1em;
-  }
+/* Video container */
+.media-container {
+  aspect-ratio: 1;
+  background-color: #000;
+  border-radius: 12px;
+  overflow: hidden;
+  position: relative;
+}
+.media-container.vertical {
+  max-width: 300px;
+  margin-left: auto;
+  margin-right: auto;
+}
+.media-video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
 }
 
-@media (max-width: 600px) { /* sm breakpoint */
+/* Scroll to Top Button */
+.scroll-to-top-button {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  background-color: rgba(255, 255, 255, 0.15);
+  color: #fff;
+  border: none;
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  font-size: 1.5em;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  z-index: 1000;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+  transition: background-color 0.3s ease, opacity 0.3s ease, transform 0.3s ease;
+  opacity: 0;
+  transform: translateY(100px);
+}
+.scroll-to-top-button.show {
+  opacity: 1;
+  transform: translateY(0);
+}
+.scroll-to-top-button:hover {
+  background-color: rgba(255, 255, 255, 0.3);
+}
+
+
+/* Disenio Iframe */
+
+.media-container {
+  position: relative;
+  border-radius: 16px;
+  overflow: hidden;
+  background: linear-gradient(135deg, #1f1f1f, #2c2c2c);
+  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.5);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.media-container:hover {
+  transform: scale(1.02);
+  box-shadow: 0 16px 32px rgba(255, 255, 255, 0.15);
+}
+
+.media-iframe {
+  width: 100%;
+  height: 100%;
+  border: none;
+  border-radius: 0; /* No necesitas borde interno si ya está dentro del contenedor redondeado */
+  object-fit: cover;
+  transition: filter 0.3s ease;
+}
+
+.media-container:hover .media-iframe {
+  filter: brightness(1.05);
+}
+
+
+
+
+
+/* Responsive */
+@media (max-width: 1200px) {
+  .masonry-grid {
+    column-count: 3;
+  }
+}
+@media (max-width: 900px) {
+  .masonry-grid {
+    column-count: 2;
+  }
+}
+@media (max-width: 600px) {
+  .masonry-grid {
+    column-count: 2;
+    column-gap: 0.5rem;
+  }
+  .masonry-item {
+    margin-bottom: 0.5rem;
+  }
   .collage-title {
     font-size: 2.2em;
   }
   .collage-description {
     font-size: 1em;
-  }
-  .image-caption {
-    font-size: 0.9em;
-  }
-  .image-collage-container {
-    padding: 40px 10px;
   }
 }
 </style>

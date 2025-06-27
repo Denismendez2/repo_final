@@ -1,113 +1,88 @@
 <template>
+
+  <section id="portfolio">
   <v-container class="portfolio-container" fluid>
     <v-row justify="center" class="text-center">
       <v-col cols="12">
         <h1 class="portfolio-title">Portfolio</h1>
-        <p class="portfolio-description">Explora mi trabajo a través de diferentes categorías y descubre cómo puedo ayudarte a crear contenido visual impactante.</p>
-      </v-col>
-    </v-row>
-
-    <v-row justify="center" class="mb-8">
-      <v-col cols="12" sm="auto">
-        <v-btn-toggle
-          v-model="activeCategory"
-          mandatory
-          group
-          dark
-        >
-          <v-btn
-            v-for="cat in categories"
-            :key="cat.name"
-            :value="cat.name"
-            class="category-btn"
-            :class="{ 'active-category-btn': activeCategory === cat.name }"
-            @click="setActiveCategory(cat.name)"
-          >
-            {{ cat.name }}
-          </v-btn>
-        </v-btn-toggle>
+        <p class="portfolio-description">
+          Explora mi trabajo a través de diferentes categorías y descubre cómo puedo ayudarte a crear contenido visual impactante.
+        </p>
       </v-col>
     </v-row>
 
     <v-row justify="center">
-      <v-col cols="12" sm="10" md="8" lg="6" xl="4">
-        <router-link :to="currentCategoryRoute" class="router-link-wrapper">
-          <v-card
-            class="portfolio-main-card"
-            :class="currentCategoryClass"
-            :elevation="10"
-            hover
-          >
-            <v-img
-              :src="currentCategoryImageUrl"
-              :alt="activeCategory + ' category image'"
-              class="portfolio-main-image"
-              cover >
-              <v-overlay
-                absolute
-                opacity="0" class="d-flex align-center justify-center"
-              >
-                <div class="main-portfolio-text">Portafolio</div>
-              </v-overlay>
+  <v-col
+    v-for="cat in categories"
+    :key="cat.name"
+    cols="12"
+    md="10"
+    xl="10"
+    class="mb-6"
+  >
+    <router-link :to="cat.route" class="router-link-wrapper">
+      <v-card
+        class="portfolio-main-card"
+        :class="cat.class"
+        :elevation="10"
+        hover
+      >
+        <div class="image-overlay-wrapper">
+  <v-img
+    :src="cat.imageUrl"
+    :alt="cat.name + ' image'"
+    class="portfolio-main-image"
+    cover
+  ></v-img>
+  <div class="overlay-text">
+    <h2 class="main-portfolio-text">{{ cat.name }}</h2>
+  </div>
+</div>
 
-              <v-overlay
-                absolute
-                opacity="0" class="d-flex align-center justify-center hover-overlay"
-              >
-                <span class="view-details-text">Ver Contenido</span>
-              </v-overlay>
-            </v-img>
-          </v-card>
-        </router-link>
-      </v-col>
-    </v-row>
+      </v-card>
+    </router-link>
+  </v-col>
+</v-row>
+
   </v-container>
+  </section>
 </template>
 
+
 <script>
-// Make sure to import your images.
-import photographyImage from '../assets/fotoportaf.jpg'; // Example image for photography
-import videoImage from '../assets/fotovideo.jpg'; // Example image for videos
-import droneImage from '../assets/drone.jpg'; // Example image for drone
+import photographyImage from '../assets/fotoportaf.jpg';
+import videoImage from '../assets/fotovideo.jpg';
+import droneImage from '../assets/drone.jpg';
 
 export default {
   name: 'Portfolio',
   data() {
     return {
-      activeCategory: 'Fotografías', // Default active category
       categories: [
-        { name: 'Fotografías', route: '/Cfotografias', imageUrl: photographyImage, class: 'gradient-orange' },
-        { name: 'Videos', route: '/Cvideos', imageUrl: videoImage, class: 'gradient-pink' },
-        { name: 'Drone', route: '/Cdrone', imageUrl: droneImage, class: 'gradient-orange' }
-      ],
-     
-    
+        {
+          name: 'Fotografías',
+          route: '/Cfotografias',
+          imageUrl: photographyImage,
+          class: 'gradient-orange'
+        },
+       {
+    name: 'Videos',
+    route: '/Cvideos',
+    imageUrl: videoImage,
+    class: 'gradient-pink'
+  },
+        {
+          name: 'Drone',
+          route: '/Cdrone',
+          imageUrl: droneImage,
+          class: 'gradient-orange'
+        }
+      ]
     };
-  },
-  computed: {
-    currentCategoryData() {
-      return this.categories.find(cat => cat.name === this.activeCategory);
-    },
-    currentCategoryRoute() {
-      return this.currentCategoryData ? this.currentCategoryData.route : '/';
-    },
-    currentCategoryImageUrl() {
-      return this.currentCategoryData ? this.currentCategoryData.imageUrl : '';
-    },
-    currentCategoryClass() {
-      return this.currentCategoryData ? this.currentCategoryData.class : '';
-    }
-  },
-  methods: {
-    setActiveCategory(category) {
-      this.activeCategory = category;
-    },
-    setActivePhotographySubcategory(subcategory) {
-      this.activePhotographySubcategory = subcategory;
-    },
   }
 };
 </script>
+
 
 <style scoped>
 /* Overall container and text styles */
@@ -172,21 +147,41 @@ export default {
 }
 
 .portfolio-main-card {
+  height: 500px;
   border-radius: 10px !important;
   overflow: hidden;
-  transition: transform 0.3s ease, box-shadow 0.3s ease; /* Removed width from transition */
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
   cursor: pointer;
-  height: 400px; /* Fixed height for consistency */
-  display: flex;
-  justify-content: center;
-  align-items: center;
   position: relative;
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4) !important;
 }
 
 .portfolio-main-card:hover {
-  transform: translateY(-5px) scale(1.02); /* Slight lift and scale */
-  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.6) !important; /* Stronger shadow */
+  transform: translateY(-5px) scale(1.02);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.6) !important;
+}
+
+.image-overlay-wrapper {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+.overlay-text {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.4); /* Sombra oscura */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 2;
+  transition: background-color 0.3s ease;
+}
+
+.portfolio-main-card:hover .overlay-text {
+  background-color: rgba(0, 0, 0, 0.6);
 }
 
 /* Apply gradient backgrounds */
@@ -201,13 +196,14 @@ export default {
 .portfolio-main-image {
   width: 100%;
   height: 100%;
+  position: relative;
   /* `object-fit: cover;` is now handled by Vuetify's `cover` prop on v-img */
   transition: transform 0.3s ease; /* Smooth transition for hover */
 }
 
 /* Specific hover effect for the image to make it slightly wider */
 .portfolio-main-card:hover .portfolio-main-image {
-  transform: scale(1.05); /* Slightly enlarge the image itself */
+  transform: scale(1.03); /* Slightly enlarge the image itself */
 }
 
 /* --- New Styles for Overlays --- */
@@ -215,10 +211,11 @@ export default {
 /* Always visible "Portafolio" text */
 .main-portfolio-text {
   color: #fff;
-  font-size: 3em; /* Adjust size as needed */
+  font-size: 3em;
   font-weight: bold;
-  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7); /* Add shadow for readability */
-  pointer-events: none; /* Allows clicks to pass through to the router-link */
+  text-align: center;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+  
 }
 
 /* Hover overlay for "Ver Contenido" */
@@ -259,6 +256,9 @@ export default {
     height: 300px; /* Adjust height for smaller screens */
   }
   .main-portfolio-text {
+
+    z-index: 10;
+  position: relative;
     font-size: 2em; /* Smaller text on small screens */
   }
 }
