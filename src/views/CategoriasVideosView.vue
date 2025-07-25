@@ -19,7 +19,6 @@
         <router-link :to="videoCategory.route" class="gallery-router-link">
           <v-card
             class="gallery-card"
-            :class="videoCategory.class"
             :elevation="10"
             hover
           >
@@ -29,7 +28,7 @@
                 :alt="videoCategory.name"
                 class="gallery-card-image"
                 cover
-                height="350px"
+                height="550px"
               ></v-img>
               <div class="overlay-text">
                 <div class="card-category-name">{{ videoCategory.name }}</div>
@@ -52,21 +51,8 @@ export default {
         {
           name: 'Hermanos Arias',
           route: '/videos/hermanosarias',
-          imageUrl: 'https://ik.imagekit.io/levimendozaph/Videos/HermanosArias/hermanos1.jpg',
-          class: 'gradient-pink',
-        },
-        {
-          name: 'Videos Largos',
-          route: '/videos/largaduracion',
-          imageUrl: 'https://ik.imagekit.io/levimendozaph/Videos/Largos/largo1.jpg',
-          class: 'gradient-blue',
-        },
-        {
-          name: 'Contenido para Redes',
-          route: '/videos/redes',
-          imageUrl: 'https://ik.imagekit.io/levimendozaph/Videos/Redes/reel1.jpg',
-          class: 'gradient-orange',
-        },
+          imageUrl: 'https://ik.imagekit.io/levimendozaph/Hermanos%20Arias/_MG_1168.jpg?updatedAt=1750143151106'
+        }
       ]
     }
   }
@@ -74,8 +60,6 @@ export default {
 </script>
 
 <style scoped>
-/* Igual que el estilo de fotos, puedes reutilizarlo sin conflictos */
-
 .video-gallery-container {
   background-color: #000;
   color: #fff;
@@ -115,21 +99,12 @@ export default {
   width: 100%;
   max-width: 80%;
   margin: auto;
+  background: transparent !important;
 }
 
 .gallery-card:hover {
   transform: translateY(-8px) scale(1.03);
   box-shadow: 0 12px 30px rgba(0, 0, 0, 0.7);
-}
-
-.gradient-orange {
-  background: linear-gradient(to right, #ff7e5f, #feb47b);
-}
-.gradient-pink {
-  background: linear-gradient(to right, #ee9ca7, #ffdde1);
-}
-.gradient-blue {
-  background: linear-gradient(to right, #6dd5ed, #2193b0);
 }
 
 .gallery-card-image {

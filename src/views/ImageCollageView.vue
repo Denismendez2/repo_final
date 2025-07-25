@@ -272,12 +272,17 @@ export default {
 }
 .lightbox-image,
 .lightbox-video {
-  max-width: 90%;
-  max-height: 90%;
+  width: auto;
+  max-width: 80vw;
+  max-height: 80vh;
+  height: auto;
   border-radius: 12px;
   box-shadow: 0 0 20px rgba(255, 255, 255, 0.2);
   object-fit: contain;
+  display: block;
+  margin: 0 auto;
 }
+
 .lightbox-button {
   position: absolute;
   top: 50%;

@@ -11,14 +11,11 @@
 
           <!-- Redes sociales -->
           <div class="social-links">
-            <a href="https://instagram.com/tu_usuario" target="_blank" class="social-icon">
+            <a href="https://www.instagram.com/levimendoza_photographer?igsh=ZmMyZmZnYnRlZWs3" target="_blank" class="social-icon">
               <i class="fab fa-instagram"></i>
             </a>
-            <a href="https://tiktok.com/@tu_usuario" target="_blank" class="social-icon">
+            <a href="https://www.tiktok.com/@levimendoza_photographer?_t=ZM-8yJf1sHOWTl&_r=1" target="_blank" class="social-icon">
               <i class="fab fa-tiktok"></i>
-            </a>
-            <a href="https://linkedin.com/in/tu_usuario" target="_blank" class="social-icon">
-              <i class="fab fa-linkedin-in"></i>
             </a>
           </div>
         </div>
@@ -27,28 +24,28 @@
       <div class="about-right">
         <h2 class="section-title">Sobre mí</h2>
         <p class="description">
-          Soy un fotógrafo y videógrafo apasionado con más de 10 años de experiencia...
+          Soy fotógrafo y videógrafo con gran experiencia en distintos estilos y técnicas. Me encanta cuidar cada detalle, desde cada toma hasta la edición, mi principal objetivo es que cada cliente se sienta satisfecho y feliz con el resultado.
         </p>
-        <p class="description">
-          Mi objetivo es transformar tus ideas en imágenes...
-        </p>
+       
         <div class="details-grid">
           <div class="specialties">
-            <h3>Especialidades</h3>
+            <h3>Habilidades</h3>
             <ul>
-              <li><span class="icon">&#10003;</span>Fotografía de eventos</li>
-              <li><span class="icon">&#10003;</span>Retratos profesionales</li>
-              <li><span class="icon">&#10003;</span>Videografía comercial</li>
-              <li><span class="icon">&#10003;</span>Fotografía deportiva</li>
+              <li><span class="icon">&#10003;</span>Atención al detalle</li>
+              <li><span class="icon">&#10003;</span>Comunicaciones</li>
+              <li><span class="icon">&#10003;</span>Creatividad</li>
+              <li><span class="icon">&#10003;</span>Puntualidad</li>
+              <li><span class="icon">&#10003;</span>Trabajo en equipo</li>
+              <li><span class="icon">&#10003;</span>Empatía</li>
             </ul>
           </div>
           <div class="equipment">
             <h3>Equipamiento</h3>
             <ul>
-              <li><span class="icon">&#128247;</span>Cámaras profesionales</li>
-              <li><span class="icon">&#128746;</span>Drones de última generación</li>
-              <li><span class="icon">&#128187;</span>Equipo de video 4K</li>
-              <li><span class="icon">&#128161;</span>Iluminación profesional</li>
+              <li><span class="icon">&#128247;</span>Cámara: CANON 70D</li>
+              <li><span class="icon">&#128641;</span>Dron: DJI Mini 2</li>
+              <li><span class="icon">&#128187;</span>Micrófonos: Hollyland Lark M2S</li>
+              <li><span class="icon">&#128161;</span> Estabilizador: DJI RSC-2</li>
             </ul>
           </div>
         </div>

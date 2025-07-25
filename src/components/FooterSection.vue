@@ -23,18 +23,16 @@
         <v-col cols="12" md="4" class="footer-contact">
           <h3>Sígueme</h3>
           <div class="social-icons">
-            <a href="https://instagram.com/" target="_blank" aria-label="Instagram">
+            <a href="https://www.instagram.com/levimendoza_photographer?igsh=ZmMyZmZnYnRlZWs3" target="_blank" aria-label="Instagram">
               <i class="fab fa-instagram"></i>
             </a>
-            <a href="https://tiktok.com/" target="_blank" aria-label="TikTok">
+            <a href="https://www.tiktok.com/@levimendoza_photographer?_t=ZM-8yJf1sHOWTl&_r=1" target="_blank" aria-label="TikTok">
               <i class="fab fa-tiktok"></i>
             </a>
-            <a href="https://linkedin.com/" target="_blank" aria-label="LinkedIn">
-              <i class="fab fa-linkedin-in"></i>
-            </a>
+            
           </div>
-          <p>Email: contacto@lp-photographer.com</p>
-          <p>Tel: +503 1234 5678</p>
+          <p>Email: levimendozaph@gmail.com</p>
+          <p>Tel: +503 7161 4468</p>
           <p>San Salvador, El Salvador</p>
         </v-col>
       </v-row>

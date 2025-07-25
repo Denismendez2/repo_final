@@ -7,10 +7,6 @@
     <ContactanosSection />
     <FooterSection/>
 
-    <!-- Nueva sección de contenido adicional para hacer la vista más larga -->
-    <section class="additional-content">
- 
-    </section>
   </div>
 </template>
 

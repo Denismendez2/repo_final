@@ -19,7 +19,6 @@
         <router-link :to="category.route" class="gallery-router-link">
           <v-card
             class="gallery-card"
-            :class="category.class"
             :elevation="10"
             hover
           >
@@ -28,8 +27,6 @@
                 :src="category.imageUrl"
                 :alt="category.name"
                 class="gallery-card-image"
-                cover
-                height="350px"
               ></v-img>
               <div class="overlay-text">
                 <div class="card-category-name">{{ category.name }}</div>
@@ -49,43 +46,36 @@ export default {
   data() {
     return {
       photoCategories: [
-  {
-    name: 'Hermanos Arias',
-    route: '/fotografias/hermanosarias',
-    imageUrl: 'https://ik.imagekit.io/levimendozaph/Hermanos%20Arias/_MG_5916.jpg?tr=w-1200,h-800,rt-auto',
-    class: 'gradient-pink',
-  },
-  {
-    name: 'Deportivas',
-    route: '/fotografias/deportivas',
-    imageUrl: 'https://ik.imagekit.io/levimendozaph/Home%20images/_MG_0287.jpg?tr=w-1200,h-600,rt-auto',
-    class: 'gradient-orange',
-  },
-  {
-    name: 'Eventos',
-    route: '/fotografias/eventos',
-    imageUrl: 'https://ik.imagekit.io/levimendozaph/Eventos/_MG_3886.jpg?tr=w-1200,h-600,rt-auto',
-    class: 'gradient-blue',
-  },
-  {
-    name: 'Hunters',
-    route: '/fotografias/hunters',
-    imageUrl: 'https://ik.imagekit.io/levimendozaph/Hunters/_MG_5671.jpg?tr=w-1200,h-600,rt-auto',
-    class: 'gradient-blue',
-  },
-  {
-    name: 'Sesiones Generales',
-    route: '/fotografias/sesionesgenerales',
-    imageUrl: 'https://ik.imagekit.io/levimendozaph/Sesiones%20generales/_MG_5322.jpg?tr=w-1200,h-600,rt-auto',
-    class: 'gradient-blue',
-  },
-],
-
-    };
-  },
-};
+        {
+          name: 'Hermanos Arias',
+          route: '/fotografias/hermanosarias',
+          imageUrl: 'https://ik.imagekit.io/levimendozaph/Hermanos%20Arias/_MG_5916.jpg?tr=w-1200,h-800,rt-auto'
+        },
+        {
+          name: 'Deportivas',
+          route: '/fotografias/deportivas',
+          imageUrl: 'https://ik.imagekit.io/levimendozaph/Home%20images/_MG_0287.jpg?tr=w-1200,h-600,rt-auto'
+        },
+        {
+          name: 'Eventos',
+          route: '/fotografias/eventos',
+          imageUrl: 'https://ik.imagekit.io/levimendozaph/Eventos/_MG_3886.jpg?tr=w-1200,h-600,rt-auto'
+        },
+        {
+          name: 'Hunters',
+          route: '/fotografias/hunters',
+          imageUrl: 'https://ik.imagekit.io/levimendozaph/Hunters/_MG_5671.jpg?tr=w-1200,h-600,rt-auto'
+        },
+        {
+          name: 'Sesiones Generales',
+          route: '/fotografias/sesionesgenerales',
+          imageUrl: 'https://ik.imagekit.io/levimendozaph/Sesiones%20generales/_MG_5322.jpg?tr=w-1200,h-600,rt-auto'
+        }
+      ]
+    }
+  }
+}
 </script>
-
 
 <style scoped>
 .photography-gallery-container {
@@ -127,6 +117,7 @@ export default {
   width: 100%;
   max-width: 80%;
   margin: auto;
+  background: transparent !important;
 }
 
 .gallery-card:hover {
@@ -134,23 +125,27 @@ export default {
   box-shadow: 0 12px 30px rgba(0, 0, 0, 0.7);
 }
 
-.gradient-orange {
-  background: linear-gradient(to right, #ff7e5f, #feb47b);
-}
-.gradient-pink {
-  background: linear-gradient(to right, #ee9ca7, #ffdde1);
-}
-.gradient-blue {
-  background: linear-gradient(to right, #6dd5ed, #2193b0);
-}
-.gradient-green {
-  background: linear-gradient(to right, #83a4d4, #b6fbff);
+.gallery-card-image {
+  width: 100%;
+  height: auto;
+  aspect-ratio: 16 / 9;
+  object-fit: contain;
+  transition: transform 0.3s ease;
+  filter: brightness(0.95);
 }
 
-.gallery-card-image {
-  transition: transform 0.3s ease;
-  width: 100%;
-  height: 100%;
+@media (max-width: 960px) {
+  .gallery-card-image {
+    aspect-ratio: auto;
+    height: 280px;
+    object-fit: cover;
+  }
+}
+
+@media (max-width: 600px) {
+  .gallery-card-image {
+    height: 200px;
+  }
 }
 
 .gallery-card:hover .gallery-card-image {
@@ -201,45 +196,5 @@ export default {
 
 .gallery-card:hover .view-more-text {
   opacity: 1;
-}
-
-/* Responsivo */
-@media (max-width: 960px) {
-  .gallery-title {
-    font-size: 2.8em;
-  }
-  .gallery-description {
-    font-size: 1.1em;
-  }
-  .card-category-name {
-    font-size: 1.8em;
-  }
-  .view-more-text {
-    font-size: 1.2em;
-  }
-  .gallery-card-image {
-    height: 280px;
-  }
-}
-
-@media (max-width: 600px) {
-  .gallery-title {
-    font-size: 2.2em;
-  }
-  .gallery-description {
-    font-size: 1em;
-  }
-  .card-category-name {
-    font-size: 1.5em;
-  }
-  .view-more-text {
-    font-size: 1.1em;
-  }
-  .gallery-card-image {
-    height: 200px;
-  }
-  .photography-gallery-container {
-    padding: 40px 10px;
-  }
 }
 </style>

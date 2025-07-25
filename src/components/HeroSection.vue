@@ -14,7 +14,7 @@
 
 
     <div class="overlay-content">
-      <h1 class="main-title">Capturando Momentos, Creando Arte</h1>
+      <h1 class="main-title">El único límite es tu mente</h1>
       <p class="subtitle">
         Fotografía y videografía profesional para transformar tus ideas en realidad visual
       </p>

@@ -34,7 +34,7 @@ const testimonios = [
   {
     nombre: 'Hunters',
     mensaje: '¡Superaste mis expectativas! Muchísimas gracias',
-    foto: foto1
+    foto: 'https://ik.imagekit.io/levimendozaph/Hunters.jpg?updatedAt=1753421106557'
   },
   {
     nombre: 'Nahomi López',
@@ -46,25 +46,25 @@ const testimonios = [
     nombre: 'Andrés Arias',
    
     mensaje: '¡Excelente trabajo como siempre bro!',
-    foto: 'https://i.pravatar.cc/150?img=3'
+    foto: 'https://ik.imagekit.io/levimendozaph/Hermanos%20Arias/_MG_9874.jpg?updatedAt=1750143347416'
   },
   {
     nombre: 'Carlos Arias',
     
     mensaje: '¡Que fotonotas mi hermano! Te luciste',
-    foto: 'https://i.pravatar.cc/150?img=4'
+    foto: 'https://ik.imagekit.io/levimendozaph/Hermanos%20Arias/_MG_8012.jpg?updatedAt=1750143193479'
   },
   {
     nombre: 'Alejandro Arias',
    
     mensaje: 'Estuvieron super geniales. ¡Buenísimas!',
-    foto: 'https://i.pravatar.cc/150?img=5'
+    foto: 'https://ik.imagekit.io/levimendozaph/Hermanos%20Arias/_MG_1629.jpg?updatedAt=1750143113360'
   },
     {
     nombre: 'Cojute BC',
   
     mensaje: '¡Mis respetos para todo lo que has mejorado y avanzado!',
-    foto: foto1
+    foto: 'https://ik.imagekit.io/levimendozaph/Cojute.jpg?updatedAt=1753421106620'
   }
 ];
 </script>

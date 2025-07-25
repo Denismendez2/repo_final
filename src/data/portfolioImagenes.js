@@ -629,13 +629,121 @@ export default {
     type: 'video',
     src: 'https://ik.imagekit.io/levimendozaph/Videos/Hermanos%20Arias/copy_D42E5D3F-EE29-47C3-A66C-BE2868EC3D2A.MOV/ik-video.mp4?',
     alt: 'Video Hermanos Arias 1',
-    ratio: 16 / 9//horizontal
+    ratio: 9 / 16
   },
   {
-    type: 'iframe',
-    src: 'https://www.youtube.com/embed/ts1dEUpOGe8?si=P4ChEPka8tIebeB5',
+    type: 'video',
+    src: 'https://ik.imagekit.io/levimendozaph/Videos/Hermanos%20Arias/SnapInsta.to_AQMQoqxZa90kZsl7lBU555aVYih_zjkdFBMQR8qR36e7aiR63Jqrz8zhUWVH4UtkgNzgp4aP04c80W3i-ECv6AQwQBwLHMartd6Q2UI.mp4',
     alt: 'Video Hermanos Arias 2',
-    ratio: 16 / 9//tt
+    ratio: 9 / 16
+  },
+  {
+    type: 'video',
+    src: 'https://ik.imagekit.io/levimendozaph/Videos/Hermanos%20Arias/SnapInsta.to_AQPug74GimvpkkXClgDaWpQqWoltGmVtTwhGPCiz1YrWE7WuWe4mpAynhiVTySMjIO9-9LCD1eycFh8VNKBSrskKXOsraJ1Xyp18t7s.mp4',
+    alt: 'Video Hermanos Arias 3',
+    ratio: 9 / 16
+  },
+  {
+    type: 'video',
+    src: 'https://ik.imagekit.io/levimendozaph/Videos/Hermanos%20Arias/SnapInsta.to_AQM0MoE6cNmKhd4NudIaeGKeddJvlfKd2PsH2sc5Ke7XjTU92CiWOWGL1gYOeY5_25gtEj6TeofxDRrVyOhUE_Sv5LEFVHGpNA-tBAM.mp4',
+    alt: 'Video Hermanos Arias 4',
+    ratio: 9 / 16
+  },
+  {
+    type: 'video',
+    src: 'https://ik.imagekit.io/levimendozaph/Videos/Hermanos%20Arias/SnapInsta.to_AQMcfVFG_AL04RcV5hfzLp7xn9_spHlLJNa0qI8kz0y_Md4T3QkBybkV2_V5-GvlMUqJByBNKG7XNyJ11oP1_elFF0jAWXQB_XbiDps.mp4',
+    alt: 'Video Hermanos Arias 5',
+    ratio: 9 / 16
+  },
+  {
+    type: 'video',
+    src: 'https://ik.imagekit.io/levimendozaph/Videos/Hermanos%20Arias/SnapInsta.to_AQMsO882wGsMeZ1OR4XobT0cDVir0AMoF2oM-avhZYzEjrOPJUxIZ52ibjnr4LrwsN3I18GdpzEgqu7ZWb29n1906S-KPq3ZDtHHH7g.mp4',
+    alt: 'Video Hermanos Arias 6',
+    ratio: 9 / 16
+  },
+  {
+    type: 'video',
+    src: 'https://ik.imagekit.io/levimendozaph/Videos/Hermanos%20Arias/SnapInsta.to_AQOnSvFKQKEgIoAhHmhYCX5mcV_NGAClfLTqfEDZj661QiiBEkDzLzA-gQc-j7bU-x5y6ZQ8Eqp-_ApJkFpq1shJdUqPnOSuzTV2kCs.mp4',
+    alt: 'Video Hermanos Arias 7',
+    ratio: 9 / 16
+  },
+  {
+    type: 'video',
+    src: 'https://ik.imagekit.io/levimendozaph/Videos/Hermanos%20Arias/SnapInsta.to_AQPmOlnkharHT7GDlagX0NQWwG4Ez0JUU2Jwrnhn1Awvgs3SFFJG_SICsZkuFyk6mS_Vk62CC7CSqHKl9PnSX18LPwCdKOzKkXgnlB4.mp4',
+    alt: 'Video Hermanos Arias 8',
+    ratio: 9 / 16
+  },
+  {
+    type: 'video',
+    src: 'https://ik.imagekit.io/levimendozaph/Videos/Hermanos%20Arias/SnapInsta.to_AQMp1HOONNEmE0r9ogp_V9mGrcW-yYpwcMb-GVnxLt-ImPTRfJDPdLjfHwwoN0IguynSxqYuxVzgSGhbMZxmYKquHeh7Xe80NxI7eWo.mp4',
+    alt: 'Video Hermanos Arias 9',
+    ratio: 9 / 16
+  },
+  {
+    type: 'video',
+    src: 'https://ik.imagekit.io/levimendozaph/Videos/Hermanos%20Arias/SnapInsta.to_AQMIqLmP2kJR_NVqzVzZqMe7gjxRZW6vjer21zMJdZS7m3L3OcwjljfYLR7D23gJAA0leD58CVGsfIsa-E9KTypDDwufiGu-ocQ9TlQ.mp4',
+    alt: 'Video Hermanos Arias 10',
+    ratio: 9 / 16
+  },
+  {
+    type: 'video',
+    src: 'https://ik.imagekit.io/levimendozaph/Videos/Hermanos%20Arias/SnapInsta.to_AQOeXd_13tOtX8xoVQOpXNCObLR4lmDVg_wMl-f1fhI1u5mxzznvyovWBN9wfmx7ES9GEqcU1Wa113albS-60yU9y25ZLw6uCB_jlCk.mp4',
+    alt: 'Video Hermanos Arias 11',
+    ratio: 9 / 16
+  },
+  {
+    type: 'video',
+    src: 'https://ik.imagekit.io/levimendozaph/Videos/Hermanos%20Arias/SnapInsta.to_AQO4OjOCoRvyh_o58HBZYDOoCVdjCWojhheKR1KU2IxQd43omcx_hcap2cgAdB8azACDdQ-STsbYiFKjcNAMDrj-ospvBGj5SlSATgU.mp4',
+    alt: 'Video Hermanos Arias 12',
+    ratio: 9 / 16
+  },
+  {
+    type: 'video',
+    src: 'https://ik.imagekit.io/levimendozaph/Videos/Hermanos%20Arias/SnapInsta.to_AQOlv32AB3mT8eSXJL3WSw0FJ_JVGJoC_5W3wISciZN1qKukgndKXHfCJfVAaj2a8zjjVCF5gMY8p4i6TpdQpHyzPa-TJJT5iLSv7nQ.mp4',
+    alt: 'Video Hermanos Arias 13',
+    ratio: 9 / 16
+  },
+  {
+    type: 'video',
+    src: 'https://ik.imagekit.io/levimendozaph/Videos/Hermanos%20Arias/SnapInsta.to_AQOznJqDFVXIsmlieI41vpL-ywfLaw0DO9p2WK9Dvrs-gSKDgv6B3vZuXii4uGx6sslZq-M_pj_yxlEHvaU-jvVwefeW3-uaZPGm9X0.mp4',
+    alt: 'Video Hermanos Arias 14',
+    ratio: 9 / 16
+  },
+  {
+    type: 'video',
+    src: 'https://ik.imagekit.io/levimendozaph/Videos/Hermanos%20Arias/SnapInsta.to_AQMg46Vp522v_aNwVarE8Ui9uFvsFLzt1fFlh4kd8NuoqyBl8Owck0Ut564VqN8eUZzklZuSUrkObcg2p2mMVbzeejLHQDCG520dUNs.mp4',
+    alt: 'Video Hermanos Arias 15',
+    ratio: 9 / 16
+  },
+  {
+    type: 'video',
+    src: 'https://ik.imagekit.io/levimendozaph/Videos/Hermanos%20Arias/SnapInsta.to_AQPdpfK9eOJ2XfavHM82Nx4_2B6-0q_3R9SbizbZgB2Gl-TNKzVPc3LHzns5qgXEEWvnuTSCnqUYQGPRfsVZNEz54H7Zl2auIlocvM4.mp4',
+    alt: 'Video Hermanos Arias 16',
+    ratio: 9 / 16
+  },
+  {
+    type: 'video',
+    src: 'https://ik.imagekit.io/levimendozaph/Videos/Hermanos%20Arias/SnapInsta.to_AQNEeYUSOoCuUjf-yz0t_ClAgL_fEVNDYLcFlUbt2qchyJYZXWoEWI0PVPP2BrmDH1z7l0MrhcVxnR7yOB396Lh_Eaw3p64csFl11ug.mp4',
+    alt: 'Video Hermanos Arias 17',
+    ratio: 9 / 16
+  },
+  {
+    type: 'video',
+    src: 'https://ik.imagekit.io/levimendozaph/Videos/Hermanos%20Arias/SnapInsta.to_AQP8COjPgTmkrx0Rg1SIy0TGq6Wu6qWQ2OxQxO8SflFfEVOzFZqm28c9n3j-9cQC2_zBlz2lSnZi82P5c3hO4mTNeH1IElhA_ggKdmU.mp4',
+    alt: 'Video Hermanos Arias 18',
+    ratio: 9 / 16
+  },
+  {
+    type: 'video',
+    src: 'https://ik.imagekit.io/levimendozaph/Videos/Hermanos%20Arias/SnapInsta.to_AQPsbHKrLPLvQdNWsp66MvmF-4-QnFwX-OW1y0dp4zdzv8EmGQR5os6os0jH3cKOS7L92bnNqPvZQPY5gflS7NBnS_xuN2ud-k87Dlk.mp4',
+    alt: 'Video Hermanos Arias 19',
+    ratio: 9 / 16
+  },
+  {
+    type: 'video',
+    src: 'https://ik.imagekit.io/levimendozaph/Videos/Hermanos%20Arias/SnapInsta.to_AQP91kBSaQ-wNQgevXqOjhT8GmbaRNBRhRHreqPf-fwIFfBmdh8kP-N6RfoAJHTYk7QymOPTy7SBID5YbwOQ5T0ca_R1MYbB4BoPVak.mp4',
+    alt: 'Video Hermanos Arias 20',
+    ratio: 9 / 16
   }
 ],
 largaduracion: [
