@@ -28,7 +28,7 @@
                 :alt="videoCategory.name"
                 class="gallery-card-image"
                 cover
-                height="550px"
+                height="1200px"
               ></v-img>
               <div class="overlay-text">
                 <div class="card-category-name">{{ videoCategory.name }}</div>
@@ -51,7 +51,7 @@ export default {
         {
           name: 'Hermanos Arias',
           route: '/videos/hermanosarias',
-          imageUrl: 'https://ik.imagekit.io/levimendozaph/Hermanos%20Arias/_MG_1168.jpg?updatedAt=1750143151106'
+          imageUrl: 'https://ik.imagekit.io/levimendozaph/Hermanos%20Arias/_MG_7974.jpg?updatedAt=1750143234854'
         }
       ]
     }

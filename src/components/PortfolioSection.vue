@@ -50,9 +50,9 @@
 
 
 <script>
-import photographyImage from '../assets/fotoportaf.jpg';
-import videoImage from '../assets/fotovideo.jpg';
-import droneImage from '../assets/drone.jpg';
+import photographyImage from '../assets/Fotografias.jpg';
+import videoImage from '../assets/Videos.png';
+import droneImage from '../assets/drone.png';
 
 export default {
   name: 'Portfolio',
@@ -72,7 +72,7 @@ export default {
     class: 'gradient-pink'
   },
         {
-          name: 'Drone',
+          name: 'Dron',
           route: '/Cdrone',
           imageUrl: droneImage,
           class: 'gradient-orange'

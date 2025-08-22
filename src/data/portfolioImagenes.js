@@ -216,7 +216,6 @@ export default {
       { src: 'https://ik.imagekit.io/levimendozaph/Sesiones%20generales/_MG_6162.jpg?updatedAt=1750183524361', alt: 'Sesión general', ratio: 3 / 4 },
       { src: 'https://ik.imagekit.io/levimendozaph/Sesiones%20generales/_MG_5324.jpg?updatedAt=1750183522620', alt: 'Sesión general', ratio: 3 / 4 },
       { src: 'https://ik.imagekit.io/levimendozaph/Sesiones%20generales/_MG_5333.jpg?updatedAt=1750183519856', alt: 'Sesión general', ratio: 3 / 4 },
-      { src: 'https://ik.imagekit.io/levimendozaph/Sesiones%20generales/_MG_6163.jpg?updatedAt=1750183518893', alt: 'Sesión general', ratio: 3 / 4 },
       { src: 'https://ik.imagekit.io/levimendozaph/Sesiones%20generales/_MG_5032.jpg?updatedAt=1750183509997', alt: 'Sesión general', ratio: 4 / 3 },
       { src: 'https://ik.imagekit.io/levimendozaph/Sesiones%20generales/_MG_5044.jpg?updatedAt=1750183509154', alt: 'Sesión general', ratio: 3 / 4 },
       { src: 'https://ik.imagekit.io/levimendozaph/Sesiones%20generales/_MG_5131.jpg?updatedAt=1750183507787', alt: 'Sesión general', ratio: 3 / 4 },

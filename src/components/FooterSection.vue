@@ -3,7 +3,7 @@
     <v-container>
       <v-row class="footer-top" justify="space-between">
         <v-col cols="12" md="4" class="footer-brand">
-          <h2 class="brand-name">LP Photographer</h2>
+          <h2 class="brand-name">LM Photographer</h2>
           <p class="brand-description">
             Capturando momentos desde una nueva perspectiva. Calidad, creatividad y pasión en cada toma.
           </p>
@@ -40,7 +40,7 @@
       <v-divider class="my-6" color="grey darken-2"></v-divider>
 
       <v-row justify="center">
-        <p class="footer-copy">&copy; {{ new Date().getFullYear() }} LP Photographer. Todos los derechos reservados.</p>
+        <p class="footer-copy">&copy; {{ new Date().getFullYear() }} LM Photographer. Todos los derechos reservados.</p>
       </v-row>
     </v-container>
   </footer>
