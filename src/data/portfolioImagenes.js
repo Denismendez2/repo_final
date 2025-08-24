@@ -747,15 +747,21 @@ export default {
 ],
 largaduracion: [
   {
-    type: 'video',
-    src: 'https://ik.imagekit.io/levimendozaph/Videos/Largos/largo1.mp4',
-    alt: 'Video largo 1',
+    type: 'iframe',
+    src: 'https://www.youtube.com/embed/KtWXf1NK3M8?si=3HHCRIZN427qWFgr',
+    alt: 'Dron 1 - Puente',
     ratio: 16 / 9
   },
   {
-    type: 'video',
-    src: 'https://ik.imagekit.io/levimendozaph/Videos/Largos/largo2.mp4',
-    alt: 'Video largo 2',
+    type: 'iframe',
+    src: 'https://www.youtube.com/embed/78ziE3DgR70?si=ZBPcxbla4NicLXHS',
+    alt: 'Dron 1 - Puente',
+    ratio: 16 / 9
+  },
+  {
+    type: 'iframe',
+    src: 'https://www.youtube.com/embed/zZR3BzPllkA?si=5mg7hzyaUXPd4Wgc',
+    alt: 'Dron 1 - Puente',
     ratio: 16 / 9
   }
 ],

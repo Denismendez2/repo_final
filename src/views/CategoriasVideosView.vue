@@ -52,6 +52,11 @@ export default {
           name: 'Hermanos Arias',
           route: '/videos/hermanosarias',
           imageUrl: 'https://ik.imagekit.io/levimendozaph/Hermanos%20Arias/_MG_7974.jpg?updatedAt=1750143234854'
+        },
+        {
+          name: 'Videos Largos',
+          route: '/videos/largaduracion',
+          imageUrl: 'https://ik.imagekit.io/levimendozaph/Sesiones%20generales/_MG_5032.jpg?updatedAt=1750183509997'
         }
       ]
     }
